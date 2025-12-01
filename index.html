@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Inicial de Memoria - Memoria de Acero en 7 Días</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Test gratuito para medir tu memoria inicial. Descubre tu nivel actual y compara tus resultados tras 7 días de entrenamiento con el método S.A.L.T.O.">
+    <meta name="keywords" content="test de memoria, memoria, entrenamiento mental, curso de memoria, mejorar memoria">
+    <meta name="author" content="Memoria de Acero">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Test de Memoria Inicial - Memoria de Acero">
+    <meta property="og:description" content="Mide tu memoria en 10 minutos. Test gratuito e interactivo.">
+    <meta property="og:url" content="https://memoriadeacero.github.io/test-memoria/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            color: #111827;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .screen {
+            display: none;
+        }
+        
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .disclaimer-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .disclaimer-box h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #92400E;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .disclaimer-box p {
+            color: #78350F;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            font-family: 'Poppins', sans-serif;
+            background: #F97316;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            background: #EA580C;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: #1E3A8A;
+        }
+        
+        .btn-secondary:hover {
+            background: #1E40AF;
+        }
+        
+        .progress-bar {
+            background: #E5E7EB;
+            height: 8px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #F97316 0%, #FB923C 100%);
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .progress-text {
+            text-align: center;
+            color: #6B7280;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        
+        .exercise-box {
+            background: #F3F4F6;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .exercise-title {
+            font-family: 'Poppins', sans-serif;
+            color: #1E3A8A;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .timer {
+            font-size: 3em;
+            font-weight: 700;
+            color: #F97316;
+            font-family: 'Poppins', sans-serif;
+            margin: 20px 0;
+        }
+        
+        .memorize-items {
+            font-size: 1.3em;
+            line-height: 2;
+            color: #111827;
+            font-weight: 500;
+            margin: 20px 0;
+        }
+        
+        .animal-item {
+            font-size: 1.8em;
+            margin: 15px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .input-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .input-group label {
+            display: block;
+            color: #374151;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #D1D5DB;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Inter', sans-serif;
+            transition: border 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #F97316;
+        }
+        
+        .result-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #D1D5DB;
+        }
+        
+        .result-item.correct {
+            border-left-color: #10B981;
+            background: #F0FDF4;
+        }
+        
+        .result-item.incorrect {
+            border-left-color: #EF4444;
+            background: #FEF2F2;
+        }
+        
+        .score-box {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .score-number {
+            font-size: 4em;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            margin: 10px 0;
+        }
+        
+        .interpretation-box {
+            background: #F3F4F6;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #F97316;
+        }
+        
+        .interpretation-box h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #1E3A8A;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .comparison-box {
+            background: #FEF3C7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .symbols {
+            font-size: 2.5em;
+            letter-spacing: 20px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .timer {
+                font-size: 2em;
+            }
+            
+            .memorize-items {
+                font-size: 1.1em;
+            }
+            
+            .animal-item {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 MEMORIA DE ACERO</h1>
+            <p>Test Inicial de Auto-Evaluación</p>
+        </div>
+        
+        <div class="content">
+            <!-- Pantalla de bienvenida -->
+            <div id="screen-welcome" class="screen active">
+                <h2 style="font-family: 'Poppins', sans-serif; color: #1E3A8A; margin-bottom: 20px;">
+                    Bienvenido/a a tu Test de Memoria
+                </h2>
+                
+                <p style="margin-bottom: 15px;">
+                    Este test tiene <strong>10 ejercicios rápidos</strong> (10-12 minutos total).
+                </p>
+                
+                <div class="disclaimer-box">
+                    <h3>⚠️ AVISO IMPORTANTE</h3>
+                    <p>
+                        <strong>Este es un ejercicio de AUTO-REFLEXIÓN educativo, 
+                        NO un test diagnóstico clínico.</strong>
+                    </p>
+                    <p>
+                        No sustituye una evaluación neuropsicológica profesional.
+                    </p>
+                    <p>
+                        Su propósito es ayudarte a identificar tu punto de partida 
+                        y áreas de mejora para personalizar tu práctica durante el curso.
+                    </p>
+                    <p>
+                        <strong>Si tienes preocupaciones serias sobre tu memoria, 
+                        consulta a un profesional de la salud.</strong>
+                    </p>
+                </div>
+                
+                <h3 style="font-family: 'Poppins', sans-serif; color: #1E3A8A; margin: 30px 0 15px;">
+                    📌 Cómo funciona:
+                </h3>
+                
+                <ul style="line-height: 2; margin-left: 20px;">
+                    <li>Lee las instrucciones de cada ejercicio</li>
+                    <li>Memoriza los datos en el tiempo indicado</li>
+                    <li>Escribe lo que recuerdas (sin volver atrás)</li>
+                    <li>Ve las respuestas correctas y califícate</li>
+                </ul>
+                
+                <h3 style="font-family: 'Poppins', sans-serif; color: #1E3A8A; margin: 30px 0 15px;">
+                    🎯 Objetivo:
+                </h3>
+                
+                <p style="margin-bottom: 15px;">
+                    Este test NO es para juzgarte. Es para medir tu <strong>punto de partida</strong>.
+                </p>
+                
+                <p style="background: #E0F2FE; padding: 15px; border-radius: 10px; border-left: 4px solid #0EA5E9;">
+                    💡 En el Día 7 repetirás este MISMO test y compararás resultados. 
+                    ¡La mayoría mejora entre 20-35 puntos!
+                </p>
+                
+                <button class="btn" onclick="startTest()">EMPEZAR TEST</button>
+            </div>
+            
+            <!-- Ejercicio 1: Nombres -->
+            <div id="screen-ex1-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 10%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 1 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 1: NOMBRES DE PERSONAS</h2>
+                    <p>⏱️ Tiempo: <strong>30 segundos</strong></p>
+                    <p style="margin-top: 10px;">Lee estos 5 nombres y trata de memorizarlos:</p>
+                    
+                    <div class="timer" id="timer-ex1">30</div>
+                    
+                    <div class="memorize-items">
+                        1. María González<br>
+                        2. Carlos Ruiz<br>
+                        3. Ana Torres<br>
+                        4. Luis Méndez<br>
+                        5. Sofía Castro
+                    </div>
+                </div>
+            </div>
+            
+            <div id="screen-ex1-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 10%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 1 de 10</p>
+                
+                <h2 class="exercise-title">Escribe los nombres que recuerdas</h2>
+                <p style="text-align: center; color: #6B7280; margin-bottom: 20px;">
+                    (No importa el orden)
+                </p>
+                
+                <div class="input-group">
+                    <label>1. Nombre:</label>
+                    <input type="text" id="ex1-input1" placeholder="Escribe aquí...">
+                </div>
+                <div class="input-group">
+                    <label>2. Nombre:</label>
+                    <input type="text" id="ex1-input2" placeholder="Escribe aquí...">
+                </div>
+                <div class="input-group">
+                    <label>3. Nombre:</label>
+                    <input type="text" id="ex1-input3" placeholder="Escribe aquí...">
+                </div>
+                <div class="input-group">
+                    <label>4. Nombre:</label>
+                    <input type="text" id="ex1-input4" placeholder="Escribe aquí...">
+                </div>
+                <div class="input-group">
+                    <label>5. Nombre:</label>
+                    <input type="text" id="ex1-input5" placeholder="Escribe aquí...">
+                </div>
+                
+                <button class="btn" onclick="checkEx1()">VER RESPUESTAS CORRECTAS</button>
+            </div>
+            
+            <div id="screen-ex1-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 10%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 1 de 10</p>
+                
+                <h2 class="exercise-title">✅ Respuestas Correctas</h2>
+                
+                <div class="memorize-items">
+                    1. María González<br>
+                    2. Carlos Ruiz<br>
+                    3. Ana Torres<br>
+                    4. Luis Méndez<br>
+                    5. Sofía Castro
+                </div>
+                
+                <div id="ex1-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex1-score">0 / 5</div>
+                </div>
+                
+                <div id="ex1-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="goToScreen('screen-ex2-memorize'); startTimer('timer-ex2', 30, 'screen-ex2-answer')">
+                    CONTINUAR AL EJERCICIO 2 →
+                </button>
+            </div>
+            
+            <!-- Ejercicio 2: Números -->
+            <div id="screen-ex2-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 20%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 2 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 2: NÚMERO</h2>
+                    <p>⏱️ Tiempo: <strong>30 segundos</strong></p>
+                    <p style="margin-top: 10px;">Memoriza este número de 10 dígitos:</p>
+                    
+                    <div class="timer" id="timer-ex2">30</div>
+                    
+                    <div class="memorize-items" style="font-size: 2em; letter-spacing: 10px; font-family: 'Poppins', sans-serif;">
+                        8 3 5 2 9 1 7 4 6 0
+                    </div>
+                </div>
+            </div>
+            
+            <div id="screen-ex2-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 20%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 2 de 10</p>
+                
+                <h2 class="exercise-title">Escribe el número que recuerdas</h2>
+                <p style="text-align: center; color: #6B7280; margin-bottom: 20px;">
+                    (Respeta el orden de los dígitos)
+                </p>
+                
+                <div class="input-group">
+                    <label>Número (10 dígitos):</label>
+                    <input type="text" id="ex2-input" placeholder="Escribe los 10 dígitos..." maxlength="10">
+                </div>
+                
+                <button class="btn" onclick="checkEx2()">VER RESPUESTA CORRECTA</button>
+            </div>
+            
+            <div id="screen-ex2-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 20%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 2 de 10</p>
+                
+                <h2 class="exercise-title">✅ Respuesta Correcta</h2>
+                
+                <div class="memorize-items" style="font-size: 2em; letter-spacing: 10px; font-family: 'Poppins', sans-serif;">
+                    8 3 5 2 9 1 7 4 6 0
+                </div>
+                
+                <div id="ex2-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex2-score">0 / 10</div>
+                </div>
+                
+                <div id="ex2-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="goToScreen('screen-ex3-memorize'); startTimer('timer-ex3', 30, 'screen-ex3-answer')">
+                    CONTINUAR AL EJERCICIO 3 →
+                </button>
+            </div>
+            
+            <!-- Ejercicio 3: Lista de compras -->
+            <div id="screen-ex3-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 3 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 3: LISTA DE COMPRAS</h2>
+                    <p>⏱️ Tiempo: <strong>30 segundos</strong></p>
+                    <p style="margin-top: 10px;">Memoriza estos 8 productos:</p>
+                    
+                    <div class="timer" id="timer-ex3">30</div>
+                    
+                    <div class="memorize-items">
+                        Leche • Huevos • Pan • Manzanas<br>
+                        Queso • Tomates • Arroz • Pasta
+                    </div>
+                </div>
+            </div>
+            
+            <div id="screen-ex3-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 3 de 10</p>
+                
+                <h2 class="exercise-title">Escribe los productos que recuerdas</h2>
+                <p style="text-align: center; color: #6B7280; margin-bottom: 20px;">
+                    (No importa el orden)
+                </p>
+                
+                <div class="input-group">
+                    <label>1. Producto:</label>
+                    <input type="text" id="ex3-input1">
+                </div>
+                <div class="input-group">
+                    <label>2. Producto:</label>
+                    <input type="text" id="ex3-input2">
+                </div>
+                <div class="input-group">
+                    <label>3. Producto:</label>
+                    <input type="text" id="ex3-input3">
+                </div>
+                <div class="input-group">
+                    <label>4. Producto:</label>
+                    <input type="text" id="ex3-input4">
+                </div>
+                <div class="input-group">
+                    <label>5. Producto:</label>
+                    <input type="text" id="ex3-input5">
+                </div>
+                <div class="input-group">
+                    <label>6. Producto:</label>
+                    <input type="text" id="ex3-input6">
+                </div>
+                <div class="input-group">
+                    <label>7. Producto:</label>
+                    <input type="text" id="ex3-input7">
+                </div>
+                <div class="input-group">
+                    <label>8. Producto:</label>
+                    <input type="text" id="ex3-input8">
+                </div>
+                
+                <button class="btn" onclick="checkEx3()">VER RESPUESTAS CORRECTAS</button>
+            </div>
+            
+            <div id="screen-ex3-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 3 de 10</p>
+                
+                <h2 class="exercise-title">✅ Respuestas Correctas</h2>
+                
+                <div class="memorize-items">
+                    Leche • Huevos • Pan • Manzanas<br>
+                    Queso • Tomates • Arroz • Pasta
+                </div>
+                
+                <div id="ex3-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex3-score">0 / 8</div>
+                </div>
+                
+                <div id="ex3-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="goToScreen('screen-ex4-memorize'); startTimer('timer-ex4', 60, 'screen-ex4-answer')">
+                    CONTINUAR AL EJERCICIO 4 →
+                </button>
+            </div>
+            
+            <!-- Ejercicio 4: Animales con nombres absurdos -->
+            <div id="screen-ex4-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 4 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 4: ANIMALES CON NOMBRES</h2>
+                    <p>⏱️ Tiempo: <strong>60 segundos</strong></p>
+                    <p style="margin-top: 10px;">
+                        Memoriza el nombre de cada animal.<br>
+                        <em style="color: #6B7280;">(Pista: Son nombres poco comunes... ¡usa tu imaginación!)</em>
+                    </p>
+                    
+                    <div class="timer" id="timer-ex4">60</div>
+                    
+                    <div class="animal-item">🐕 PUNTILLA</div>
+                    <div class="animal-item">🐱 CALCETÍN</div>
+                    <div class="animal-item">🐘 TORPEDO</div>
+                    <div class="animal-item">🦁 CROQUETA</div>
+                    <div class="animal-item">🐄 MECHERO</div>
+                </div>
+            </div>
+            
+            <div id="screen-ex4-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 4 de 10</p>
+                
+                <h2 class="exercise-title">Escribe el nombre de cada animal</h2>
+                
+                <div class="input-group">
+                    <label>🦁 Se llama:</label>
+                    <input type="text" id="ex4-input1" placeholder="Nombre del león">
+                </div>
+                <div class="input-group">
+                    <label>🐄 Se llama:</label>
+                    <input type="text" id="ex4-input2" placeholder="Nombre de la vaca">
+                </div>
+                <div class="input-group">
+                    <label>🐕 Se llama:</label>
+                    <input type="text" id="ex4-input3" placeholder="Nombre del perro">
+                </div>
+                <div class="input-group">
+                    <label>🐘 Se llama:</label>
+                    <input type="text" id="ex4-input4" placeholder="Nombre del elefante">
+                </div>
+                <div class="input-group">
+                    <label>🐱 Se llama:</label>
+                    <input type="text" id="ex4-input5" placeholder="Nombre del gato">
+                </div>
+                
+                <button class="btn" onclick="checkEx4()">VER RESPUESTAS CORRECTAS</button>
+            </div>
+            
+            <div id="screen-ex4-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 4 de 10</p>
+                
+                <h2 class="exercise-title">✅ Respuestas Correctas</h2>
+                
+                <div class="animal-item">🐕 PUNTILLA</div>
+                <div class="animal-item">🐱 CALCETÍN</div>
+                <div class="animal-item">🐘 TORPEDO</div>
+                <div class="animal-item">🦁 CROQUETA</div>
+                <div class="animal-item">🐄 MECHERO</div>
+                
+                <div id="ex4-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex4-score">0 / 5</div>
+                </div>
+                
+                <div id="ex4-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="goToScreen('screen-ex5-memorize'); startTimer('timer-ex5', 45, 'screen-ex5-answer')">
+                    CONTINUAR AL EJERCICIO 5 →
+                </button>
+            </div>
+            
+            <!-- Ejercicio 5: Secuencia de acciones -->
+            <div id="screen-ex5-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 5 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 5: SECUENCIA DE ACCIONES</h2>
+                    <p>⏱️ Tiempo: <strong>45 segundos</strong></p>
+                    <p style="margin-top: 10px;">Memoriza estos 6 pasos EN ORDEN:</p>
+                    
+                    <div class="timer" id="timer-ex5">45</div>
+                    
+                    <div class="memorize-items" style="text-align: left; max-width: 400px; margin: 20px auto;">
+                        1. Abrir la puerta<br>
+                        2. Encender la luz<br>
+                        3. Quitarse los zapatos<br>
+                        4. Colgar el abrigo<br>
+                        5. Revisar el correo<br>
+                        6. Poner música
+                    </div>
+                </div>
+            </div>
+            
+            <div id="screen-ex5-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 5 de 10</p>
+                
+                <h2 class="exercise-title">Escribe los pasos EN ORDEN</h2>
+                
+                <div class="input-group">
+                    <label>1. Primer paso:</label>
+                    <input type="text" id="ex5-input1">
+                </div>
+                <div class="input-group">
+                    <label>2. Segundo paso:</label>
+                    <input type="text" id="ex5-input2">
+                </div>
+                <div class="input-group">
+                    <label>3. Tercer paso:</label>
+                    <input type="text" id="ex5-input3">
+                </div>
+                <div class="input-group">
+                    <label>4. Cuarto paso:</label>
+                    <input type="text" id="ex5-input4">
+                </div>
+                <div class="input-group">
+                    <label>5. Quinto paso:</label>
+                    <input type="text" id="ex5-input5">
+                </div>
+                <div class="input-group">
+                    <label>6. Sexto paso:</label>
+                    <input type="text" id="ex5-input6">
+                </div>
+                
+                <button class="btn" onclick="checkEx5()">VER RESPUESTAS CORRECTAS</button>
+            </div>
+            
+            <div id="screen-ex5-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 5 de 10</p>
+                
+                <h2 class="exercise-title">✅ Respuestas Correctas</h2>
+                
+                <div class="memorize-items" style="text-align: left; max-width: 400px; margin: 20px auto;">
+                    1. Abrir la puerta<br>
+                    2. Encender la luz<br>
+                    3. Quitarse los zapatos<br>
+                    4. Colgar el abrigo<br>
+                    5. Revisar el correo<br>
+                    6. Poner música
+                </div>
+                
+                <div id="ex5-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex5-score">0 / 6</div>
+                </div>
+                
+                <div id="ex5-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="goToScreen('screen-ex6-memorize'); startTimer('timer-ex6', 45, 'screen-ex6-answer')">
+                    CONTINUAR AL EJERCICIO 6 →
+                </button>
+            </div>
+            
+            <!-- Ejercicio 6: Palabras abstractas -->
+            <div id="screen-ex6-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 6 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 6: PALABRAS ABSTRACTAS</h2>
+                    <p>⏱️ Tiempo: <strong>45 segundos</strong></p>
+                    <p style="margin-top: 10px;">Memoriza estas 10 palabras:</p>
+                    
+                    <div class="timer" id="timer-ex6">45</div>
+                    
+                    <div class="memorize-items">
+                        Justicia • Velocidad • Esperanza • Libertad • Silencio<br>
+                        Armonía • Valentía • Paciencia • Humildad • Sabiduría
+                    </div>
+                </div>
+            </div>
+            
+            <div id="screen-ex6-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 6 de 10</p>
+                
+                <h2 class="exercise-title">Escribe las palabras que recuerdas</h2>
+                <p style="text-align: center; color: #6B7280; margin-bottom: 20px;">
+                    (No importa el orden)
+                </p>
+                
+                <div class="input-group">
+                    <label>1. Palabra:</label>
+                    <input type="text" id="ex6-input1">
+                </div>
+                <div class="input-group">
+                    <label>2. Palabra:</label>
+                    <input type="text" id="ex6-input2">
+                </div>
+                <div class="input-group">
+                    <label>3. Palabra:</label>
+                    <input type="text" id="ex6-input3">
+                </div>
+                <div class="input-group">
+                    <label>4. Palabra:</label>
+                    <input type="text" id="ex6-input4">
+                </div>
+                <div class="input-group">
+                    <label>5. Palabra:</label>
+                    <input type="text" id="ex6-input5">
+                </div>
+                <div class="input-group">
+                    <label>6. Palabra:</label>
+                    <input type="text" id="ex6-input6">
+                </div>
+                <div class="input-group">
+                    <label>7. Palabra:</label>
+                    <input type="text" id="ex6-input7">
+                </div>
+                <div class="input-group">
+                    <label>8. Palabra:</label>
+                    <input type="text" id="ex6-input8">
+                </div>
+                <div class="input-group">
+                    <label>9. Palabra:</label>
+                    <input type="text" id="ex6-input9">
+                </div>
+                <div class="input-group">
+                    <label>10. Palabra:</label>
+                    <input type="text" id="ex6-input10">
+                </div>
+                
+                <button class="btn" onclick="checkEx6()">VER RESPUESTAS CORRECTAS</button>
+            </div>
+            
+            <div id="screen-ex6-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 6 de 10</p>
+                
+                <h2 class="exercise-title">✅ Respuestas Correctas</h2>
+                
+                <div class="memorize-items">
+                    Justicia • Velocidad • Esperanza • Libertad • Silencio<br>
+                    Armonía • Valentía • Paciencia • Humildad • Sabiduría
+                </div>
+                
+                <div id="ex6-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex6-score">0 / 10</div>
+                </div>
+                
+                <div id="ex6-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="goToScreen('screen-ex7-memorize'); startTimer('timer-ex7', 30, 'screen-ex7-answer')">
+                    CONTINUAR AL EJERCICIO 7 →
+                </button>
+            </div>
+            
+            <!-- Ejercicio 7: Teléfono -->
+            <div id="screen-ex7-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 7 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 7: NÚMERO DE TELÉFONO</h2>
+                    <p>⏱️ Tiempo: <strong>30 segundos</strong></p>
+                    <p style="margin-top: 10px;">Memoriza este número de teléfono:</p>
+                    
+                    <div class="timer" id="timer-ex7">30</div>
+                    
+                    <div class="memorize-items" style="font-size: 2em; font-family: 'Poppins', sans-serif;">
+                        +34 612 847 395
+                    </div>
+                </div>
+            </div>
+            
+            <div id="screen-ex7-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 7 de 10</p>
+                
+                <h2 class="exercise-title">Escribe el número de teléfono</h2>
+                <p style="text-align: center; color: #6B7280; margin-bottom: 20px;">
+                    (Incluye el código de país +34)
+                </p>
+                
+                <div class="input-group">
+                    <label>Número de teléfono completo:</label>
+                    <input type="text" id="ex7-input" placeholder="+34 XXX XXX XXX">
+                </div>
+                
+                <button class="btn" onclick="checkEx7()">VER RESPUESTA CORRECTA</button>
+            </div>
+            
+            <div id="screen-ex7-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 7 de 10</p>
+                
+                <h2 class="exercise-title">✅ Respuesta Correcta</h2>
+                
+                <div class="memorize-items" style="font-size: 2em; font-family: 'Poppins', sans-serif;">
+                    +34 612 847 395
+                </div>
+                
+                <div id="ex7-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex7-score">0 / 10</div>
+                </div>
+                
+                <div id="ex7-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="goToScreen('screen-ex8-memorize'); startTimer('timer-ex8', 45, 'screen-ex8-answer')">
+                    CONTINUAR AL EJERCICIO 8 →
+                </button>
+            </div>
+            
+            <!-- Ejercicio 8: Datos de persona -->
+            <div id="screen-ex8-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 8 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 8: DATOS DE UNA PERSONA</h2>
+                    <p>⏱️ Tiempo: <strong>45 segundos</strong></p>
+                    <p style="margin-top: 10px;">Memoriza este perfil completo:</p>
+                    
+                    <div class="timer" id="timer-ex8">45</div>
+                    
+                    <div class="memorize-items" style="text-align: left; max-width: 400px; margin: 20px auto;">
+                        <strong>Nombre:</strong> Laura Martínez<br>
+                        <strong>Edad:</strong> 34 años<br>
+                        <strong>Ciudad:</strong> Valencia<br>
+                        <strong>Profesión:</strong> Arquitecta<br>
+                        <strong>Hobby:</strong> Escalada
+                    </div>
+                </div>
+            </div>
+            
+            <div id="screen-ex8-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 8 de 10</p>
+                
+                <h2 class="exercise-title">Completa los datos de la persona</h2>
+                
+                <div class="input-group">
+                    <label>Hobby:</label>
+                    <input type="text" id="ex8-input1" placeholder="Escribe el hobby">
+                </div>
+                <div class="input-group">
+                    <label>Ciudad:</label>
+                    <input type="text" id="ex8-input2" placeholder="Escribe la ciudad">
+                </div>
+                <div class="input-group">
+                    <label>Nombre completo:</label>
+                    <input type="text" id="ex8-input3" placeholder="Escribe el nombre">
+                </div>
+                <div class="input-group">
+                    <label>Profesión:</label>
+                    <input type="text" id="ex8-input4" placeholder="Escribe la profesión">
+                </div>
+                <div class="input-group">
+                    <label>Edad:</label>
+                    <input type="text" id="ex8-input5" placeholder="Escribe la edad">
+                </div>
+                
+                <button class="btn" onclick="checkEx8()">VER RESPUESTAS CORRECTAS</button>
+            </div>
+            
+            <div id="screen-ex8-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 8 de 10</p>
+                
+                <h2 class="exercise-title">✅ Respuestas Correctas</h2>
+                
+                <div class="memorize-items" style="text-align: left; max-width: 400px; margin: 20px auto;">
+                    <strong>Nombre:</strong> Laura Martínez<br>
+                    <strong>Edad:</strong> 34 años<br>
+                    <strong>Ciudad:</strong> Valencia<br>
+                    <strong>Profesión:</strong> Arquitecta<br>
+                    <strong>Hobby:</strong> Escalada
+                </div>
+                
+                <div id="ex8-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex8-score">0 / 5</div>
+                </div>
+                
+                <div id="ex8-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="goToScreen('screen-ex9-memorize'); startTimer('timer-ex9', 30, 'screen-ex9-answer')">
+                    CONTINUAR AL EJERCICIO 9 →
+                </button>
+            </div>
+            
+            <!-- Ejercicio 9: Símbolos -->
+            <div id="screen-ex9-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 9 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 9: SECUENCIA DE SÍMBOLOS</h2>
+                    <p>⏱️ Tiempo: <strong>30 segundos</strong></p>
+                    <p style="margin-top: 10px;">Memoriza estos 6 símbolos EN ORDEN:</p>
+                    
+                    <div class="timer" id="timer-ex9">30</div>
+                    
+                    <div class="symbols">
+                        ★ ◆ ● ▲ ■ ✖
+                    </div>
+                </div>
+            </div>
+            
+            <div id="screen-ex9-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 9 de 10</p>
+                
+                <h2 class="exercise-title">Escribe los símbolos EN ORDEN</h2>
+                <p style="text-align: center; color: #6B7280; margin-bottom: 10px;">
+                    Copia cada símbolo en el orden que recuerdas:
+                </p>
+                
+                <!-- Símbolos para copiar (desordenados para no revelar la respuesta) -->
+                <div style="text-align: center; background: #F3F4F6; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="font-size: 0.9em; color: #6B7280; margin-bottom: 10px;">Símbolos disponibles (haz clic para copiar):</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <button onclick="copyToClipboard('★')" class="symbol-copy-btn" title="Clic para copiar">★</button>
+                        <button onclick="copyToClipboard('▲')" class="symbol-copy-btn" title="Clic para copiar">▲</button>
+                        <button onclick="copyToClipboard('◆')" class="symbol-copy-btn" title="Clic para copiar">◆</button>
+                        <button onclick="copyToClipboard('✖')" class="symbol-copy-btn" title="Clic para copiar">✖</button>
+                        <button onclick="copyToClipboard('●')" class="symbol-copy-btn" title="Clic para copiar">●</button>
+                        <button onclick="copyToClipboard('■')" class="symbol-copy-btn" title="Clic para copiar">■</button>
+                    </div>
+                    <p style="font-size: 0.85em; color: #9CA3AF; margin-top: 8px;">
+                        💡 Tip: Copia el símbolo y pégalo en el campo correspondiente
+                    </p>
+                </div>
+                
+                <div class="input-group">
+                    <label>1. Primer símbolo:</label>
+                    <input type="text" id="ex9-input1" placeholder="Copia y pega el símbolo">
+                </div>
+                <div class="input-group">
+                    <label>2. Segundo símbolo:</label>
+                    <input type="text" id="ex9-input2" placeholder="Copia y pega el símbolo">
+                </div>
+                <div class="input-group">
+                    <label>3. Tercer símbolo:</label>
+                    <input type="text" id="ex9-input3" placeholder="Copia y pega el símbolo">
+                </div>
+                <div class="input-group">
+                    <label>4. Cuarto símbolo:</label>
+                    <input type="text" id="ex9-input4" placeholder="Copia y pega el símbolo">
+                </div>
+                <div class="input-group">
+                    <label>5. Quinto símbolo:</label>
+                    <input type="text" id="ex9-input5" placeholder="Copia y pega el símbolo">
+                </div>
+                <div class="input-group">
+                    <label>6. Sexto símbolo:</label>
+                    <input type="text" id="ex9-input6" placeholder="Copia y pega el símbolo">
+                </div>
+                
+                <button class="btn" onclick="checkEx9()">VER RESPUESTAS CORRECTAS</button>
+            </div>
+            
+            <div id="screen-ex9-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 9 de 10</p>
+                
+                <h2 class="exercise-title">✅ Respuestas Correctas</h2>
+                
+                <div class="symbols">
+                    ★ ◆ ● ▲ ■ ✖
+                </div>
+                
+                <div id="ex9-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex9-score">0 / 6</div>
+                </div>
+                
+                <div id="ex9-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="goToScreen('screen-ex10-memorize'); startTimer('timer-ex10', 45, 'screen-ex10-answer')">
+                    CONTINUAR AL EJERCICIO 10 (ÚLTIMO) →
+                </button>
+            </div>
+            
+            <!-- Ejercicio 10: Texto corto -->
+            <div id="screen-ex10-memorize" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 10 de 10</p>
+                
+                <div class="exercise-box">
+                    <h2 class="exercise-title">EJERCICIO 10: TEXTO CON DATOS CLAVE</h2>
+                    <p>⏱️ Tiempo: <strong>45 segundos</strong></p>
+                    <p style="margin-top: 10px;">Lee y memoriza esta frase:</p>
+                    
+                    <div class="timer" id="timer-ex10">45</div>
+                    
+                    <div class="memorize-items" style="font-size: 1.15em; line-height: 2;">
+                        "El <strong>15 de marzo</strong> de <strong>1989</strong>, 
+                        <strong>Juan</strong> compró una casa <strong>azul</strong> 
+                        en la calle <strong>Robles</strong> por 120,000 euros."
+                    </div>
+                </div>
+            </div>
+            
+            <div id="screen-ex10-answer" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 10 de 10</p>
+                
+                <h2 class="exercise-title">Responde estas preguntas sobre el texto</h2>
+                
+                <div class="input-group">
+                    <label>1. ¿Color de la casa?</label>
+                    <input type="text" id="ex10-input1" placeholder="Escribe el color">
+                </div>
+                <div class="input-group">
+                    <label>2. ¿Nombre de la calle?</label>
+                    <input type="text" id="ex10-input2" placeholder="Escribe la calle">
+                </div>
+                <div class="input-group">
+                    <label>3. ¿Qué día del mes? (solo el número)</label>
+                    <input type="text" id="ex10-input3" placeholder="Escribe el día">
+                </div>
+                <div class="input-group">
+                    <label>4. ¿Nombre de la persona?</label>
+                    <input type="text" id="ex10-input4" placeholder="Escribe el nombre">
+                </div>
+                <div class="input-group">
+                    <label>5. ¿Qué año?</label>
+                    <input type="text" id="ex10-input5" placeholder="Escribe el año">
+                </div>
+                
+                <button class="btn" onclick="checkEx10()">VER RESPUESTAS CORRECTAS</button>
+            </div>
+            
+            <div id="screen-ex10-results" class="screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+                <p class="progress-text">Ejercicio 10 de 10 - ¡COMPLETADO!</p>
+                
+                <h2 class="exercise-title">✅ Respuestas Correctas</h2>
+                
+                <div class="memorize-items" style="text-align: left; max-width: 400px; margin: 20px auto;">
+                    1. Día: <strong>15</strong><br>
+                    2. Año: <strong>1989</strong><br>
+                    3. Nombre: <strong>Juan</strong><br>
+                    4. Color: <strong>Azul</strong><br>
+                    5. Calle: <strong>Robles</strong>
+                </div>
+                
+                <div id="ex10-feedback"></div>
+                
+                <div class="score-box" style="margin-top: 30px;">
+                    <p>Tu puntuación en este ejercicio:</p>
+                    <div class="score-number" id="ex10-score">0 / 5</div>
+                </div>
+                
+                <div id="ex10-analysis" class="interpretation-box"></div>
+                
+                <button class="btn" onclick="showFinalResults()">
+                    VER MIS RESULTADOS FINALES 🎯
+                </button>
+            </div>
+            
+            <!-- Pantalla de resultados finales -->
+            <div id="screen-final" class="screen">
+                <h2 style="font-family: 'Poppins', sans-serif; color: #1E3A8A; text-align: center; margin-bottom: 20px; font-size: 2em;">
+                    🎯 TUS RESULTADOS FINALES
+                </h2>
+                
+                <div class="score-box" style="background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);">
+                    <p style="font-size: 1.3em;">Puntuación Total:</p>
+                    <div class="score-number" id="final-score">0 / 70</div>
+                </div>
+                
+                <div id="final-interpretation" class="interpretation-box">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="comparison-box">
+                    <h3 style="font-family: 'Poppins', sans-serif; color: #92400E; margin-bottom: 15px;">
+                        💡 ¿Sabías que...?
+                    </h3>
+                    <p style="color: #78350F; line-height: 1.8;">
+                        En el <strong>Día 7</strong>, tras aprender el método S.A.L.T.O., 
+                        repetirás este MISMO test.<br><br>
+                        La mayoría de alumnos mejora entre <strong>20-35 puntos</strong>.<br>
+                        Algunos duplican su puntuación.
+                    </p>
+                </div>
+                
+                <div class="disclaimer-box" style="margin: 30px 0;">
+                    <h3>📌 RECUERDA</h3>
+                    <p>
+                        Este ejercicio mide tu <strong>punto de partida HOY</strong>, 
+                        no tu capacidad cognitiva permanente.
+                    </p>
+                    <p>
+                        <strong>La memoria es una habilidad ENTRENABLE.</strong>
+                    </p>
+                    <p>
+                        En 7 días, con el método S.A.L.T.O., verás mejoras significativas.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        ⚠️ Si experimentas olvidos graves que afectan tu vida diaria, 
+                        consulta a un profesional de la salud.
+                    </p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="btn" onclick="saveResults()">
+                        💾 GUARDAR MIS RESULTADOS
+                    </button>
+                    <p style="margin-top: 15px; color: #6B7280; font-size: 0.95em;">
+                        (Se guardarán en tu navegador para compararlos en el Día 7)
+                    </p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-secondary" onclick="goToScreen('screen-welcome')">
+                        🔄 HACER EL TEST DE NUEVO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Variables globales
+        let scores = {
+            ex1: 0, ex2: 0, ex3: 0, ex4: 0, ex5: 0,
+            ex6: 0, ex7: 0, ex8: 0, ex9: 0, ex10: 0
+        };
+        
+        let timerInterval = null;
+        
+        // Funciones de navegación
+        function goToScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        
+        function startTest() {
+            goToScreen('screen-ex1-memorize');
+            startTimer('timer-ex1', 30, 'screen-ex1-answer');
+        }
+        
+        // Función de temporizador
+        function startTimer(timerId, seconds, nextScreen) {
+            let timeLeft = seconds;
+            const timerEl = document.getElementById(timerId);
+            
+            if (timerInterval) clearInterval(timerInterval);
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerEl.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    goToScreen(nextScreen);
+                }
+            }, 1000);
+        }
+        
+        // Función auxiliar para normalizar texto
+                function normalizeText(text) {
+            return text
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[̀-ͯ]/g, '') // Elimina tildes
+                .replace(/[^a-z0-9\s]/g, '') // Elimina puntuación (incluye puntos)
+                .replace(/\s+/g, ' ') // Normaliza espacios múltiples
+                .trim();
+        }
+        
+        // Función auxiliar para verificar coincidencia
+                function checkMatch(userAnswer, correctAnswer) {
+            const normalized1 = normalizeText(userAnswer);
+            const normalized2 = normalizeText(correctAnswer);
+            
+            // Comparación exacta
+            if (normalized1 === normalized2) return true;
+            
+            // Aceptar singular/plural (para listas de compras)
+            // Ejemplo: "manzana" = "manzanas", "huevo" = "huevos"
+            if (normalized1 + 's' === normalized2) return true;
+            if (normalized1 === normalized2 + 's') return true;
+            
+            // Plurales irregulares comunes
+            const irregularPlurals = {
+                'pan': 'panes',
+                'arroz': 'arroces',
+                'pasta': 'pastas',
+                'leche': 'leches'
+            };
+            
+            for (let singular in irregularPlurals) {
+                let plural = irregularPlurals[singular];
+                if ((normalized1 === singular && normalized2 === plural) ||
+                    (normalized1 === plural && normalized2 === singular)) {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        // EJERCICIO 1: Nombres
+        function checkEx1() {
+            const correctAnswers = ['María González', 'Carlos Ruiz', 'Ana Torres', 'Luis Méndez', 'Sofía Castro'];
+            const userAnswers = [
+                document.getElementById('ex1-input1').value,
+                document.getElementById('ex1-input2').value,
+                document.getElementById('ex1-input3').value,
+                document.getElementById('ex1-input4').value,
+                document.getElementById('ex1-input5').value
+            ];
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;">';
+            
+            userAnswers.forEach((answer, index) => {
+                const isCorrect = correctAnswers.some(correct => checkMatch(answer, correct));
+                if (isCorrect && answer.trim() !== '') {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        ✓ Respuesta ${index + 1}: "${answer}" - ¡Correcto! (1 punto)
+                    </div>`;
+                } else if (answer.trim() !== '') {
+                    feedbackHTML += `<div class="result-item incorrect">
+                        ✗ Respuesta ${index + 1}: "${answer}" - Incorrecto (0 puntos)
+                    </div>`;
+                } else {
+                    feedbackHTML += `<div class="result-item">
+                        ○ Respuesta ${index + 1}: En blanco (0 puntos)
+                    </div>`;
+                }
+            });
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex1 = score;
+            document.getElementById('ex1-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex1-score').textContent = score + ' / 5';
+            
+            // Análisis
+            let analysis = '';
+            if (score === 5) {
+                analysis = '<h3>🌟 ¡Excelente!</h3><p>Tienes muy buena memoria para nombres.</p>';
+            } else if (score >= 3) {
+                analysis = '<h3>👍 Bien</h3><p>Memoria promedio para nombres. La mayoría de personas olvida 1-2 nombres.</p>';
+            } else {
+                analysis = '<h3>💭 Normal</h3><p>Los nombres son difíciles de recordar sin un sistema. En el Día 3-4 aprenderás técnicas específicas para esto.</p>';
+            }
+            document.getElementById('ex1-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex1-results');
+        }
+        
+        // EJERCICIO 2: Números
+        function checkEx2() {
+            const correct = '8352917460';
+            const userAnswer = document.getElementById('ex2-input').value.replace(/\s+/g, '');
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;"><h3 style="margin-bottom: 15px;">Comparación dígito por dígito:</h3>';
+            
+            for (let i = 0; i < 10; i++) {
+                const userDigit = userAnswer[i] || '?';
+                const correctDigit = correct[i];
+                const isCorrect = userDigit === correctDigit;
+                
+                if (isCorrect) {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        Posición ${i + 1}: "${userDigit}" ✓ Correcto (1 punto)
+                    </div>`;
+                } else {
+                    feedbackHTML += `<div class="result-item incorrect">
+                        Posición ${i + 1}: Escribiste "${userDigit}" - Era "${correctDigit}" (0 puntos)
+                    </div>`;
+                }
+            }
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex2 = score;
+            document.getElementById('ex2-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex2-score').textContent = score + ' / 10';
+            
+            let analysis = '';
+            if (score >= 9) {
+                analysis = '<h3>🌟 ¡Impresionante!</h3><p>Memoria numérica excepcional.</p>';
+            } else if (score >= 6) {
+                analysis = '<h3>👍 Bien</h3><p>Buena capacidad para números. Con el método S.A.L.T.O. llegarás al 100%.</p>';
+            } else {
+                analysis = '<h3>💭 Normal</h3><p>Los números largos son los más difíciles. En el Día 2 aprenderás a "segmentarlos" para recordarlos fácilmente.</p>';
+            }
+            document.getElementById('ex2-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex2-results');
+        }
+        
+        // EJERCICIO 3: Lista de compras
+        function checkEx3() {
+            const correctAnswers = ['Leche', 'Huevos', 'Pan', 'Manzanas', 'Queso', 'Tomates', 'Arroz', 'Pasta'];
+            const userAnswers = [];
+            for (let i = 1; i <= 8; i++) {
+                userAnswers.push(document.getElementById('ex3-input' + i).value);
+            }
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;">';
+            feedbackHTML += '<p style="color: #6B7280; margin-bottom: 10px; font-style: italic;">✓ = Producto estaba en la lista (no importa el orden)</p>';
+            
+            userAnswers.forEach((answer, index) => {
+                if (answer.trim() === '') {
+                    feedbackHTML += `<div class="result-item">
+                        ○ Respuesta ${index + 1}: En blanco (0 puntos)
+                    </div>`;
+                    return;
+                }
+                
+                const isCorrect = correctAnswers.some(correct => checkMatch(answer, correct));
+                if (isCorrect) {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        ✓ "${answer}" - ¡Estaba en la lista! (1 punto)
+                    </div>`;
+                } else {
+                    feedbackHTML += `<div class="result-item incorrect">
+                        ✗ "${answer}" - No estaba en la lista (0 puntos)
+                    </div>`;
+                }
+            });
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex3 = score;
+            document.getElementById('ex3-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex3-score').textContent = score + ' / 8';
+            
+            let analysis = '';
+            if (score >= 7) {
+                analysis = '<h3>🌟 ¡Excelente!</h3><p>Muy buena memoria para listas.</p>';
+            } else if (score >= 5) {
+                analysis = '<h3>👍 Bien</h3><p>Recordaste más de la mitad. El método S.A.L.T.O. te ayudará a llegar al 100%.</p>';
+            } else {
+                analysis = '<h3>💭 Normal</h3><p>Las listas son difíciles sin un sistema. En el Día 5 aprenderás la técnica "L de LOCALIZAR" para esto.</p>';
+            }
+            document.getElementById('ex3-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex3-results');
+        }
+        
+        // EJERCICIO 4: Animales con nombres
+        function checkEx4() {
+            const correctAnswers = ['Croqueta', 'Mechero', 'Puntilla', 'Torpedo', 'Calcetín'];
+            const animals = ['🦁 León', '🐄 Vaca', '🐕 Perro', '🐘 Elefante', '🐱 Gato'];
+            const userAnswers = [];
+            for (let i = 1; i <= 5; i++) {
+                userAnswers.push(document.getElementById('ex4-input' + i).value);
+            }
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;">';
+            
+            userAnswers.forEach((answer, index) => {
+                const isCorrect = checkMatch(answer, correctAnswers[index]);
+                if (isCorrect) {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        ✓ ${animals[index]}: "${answer}" - ¡Correcto! (1 punto)
+                    </div>`;
+                } else if (answer.trim() !== '') {
+                    feedbackHTML += `<div class="result-item incorrect">
+                        ✗ ${animals[index]}: Escribiste "${answer}" - Era "${correctAnswers[index]}" (0 puntos)
+                    </div>`;
+                } else {
+                    feedbackHTML += `<div class="result-item">
+                        ○ ${animals[index]}: En blanco - Era "${correctAnswers[index]}" (0 puntos)
+                    </div>`;
+                }
+            });
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex4 = score;
+            document.getElementById('ex4-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex4-score').textContent = score + ' / 5';
+            
+            let analysis = '<h3>💡 ¿Te diste cuenta?</h3>';
+            analysis += '<p>Los nombres que recordaste probablemente fueron aquellos donde tu mente creó una <strong>IMAGEN absurda</strong> automáticamente.</p>';
+            analysis += '<p>Ejemplo: "Una vaca con un mechero encendiendo algo" 🐄🔥</p>';
+            analysis += '<p>En el <strong>Día 4</strong> aprenderás a hacer esto CONSCIENTEMENTE con cualquier información.</p>';
+            
+            document.getElementById('ex4-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex4-results');
+        }
+        
+        // EJERCICIO 5: Secuencia de acciones
+        function checkEx5() {
+            const correctAnswers = [
+                'Abrir la puerta',
+                'Encender la luz',
+                'Quitarse los zapatos',
+                'Colgar el abrigo',
+                'Revisar el correo',
+                'Poner música'
+            ];
+            
+            const userAnswers = [];
+            for (let i = 1; i <= 6; i++) {
+                userAnswers.push(document.getElementById('ex5-input' + i).value);
+            }
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;">';
+            
+            userAnswers.forEach((answer, index) => {
+                const isCorrect = checkMatch(answer, correctAnswers[index]);
+                if (isCorrect) {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        ✓ Paso ${index + 1}: "${answer}" - ¡Correcto y en orden! (1 punto)
+                    </div>`;
+                } else if (answer.trim() !== '') {
+                    const correctIndex = correctAnswers.findIndex(c => checkMatch(answer, c));
+                    if (correctIndex !== -1) {
+                        feedbackHTML += `<div class="result-item incorrect">
+                            ⚠ Paso ${index + 1}: "${answer}" - Correcto pero en posición equivocada (era el paso ${correctIndex + 1}) (0 puntos)
+                        </div>`;
+                    } else {
+                        feedbackHTML += `<div class="result-item incorrect">
+                            ✗ Paso ${index + 1}: "${answer}" - No estaba en la secuencia (0 puntos)
+                        </div>`;
+                    }
+                } else {
+                    feedbackHTML += `<div class="result-item">
+                        ○ Paso ${index + 1}: En blanco - Era "${correctAnswers[index]}" (0 puntos)
+                    </div>`;
+                }
+            });
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex5 = score;
+            document.getElementById('ex5-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex5-score').textContent = score + ' / 6';
+            
+            let analysis = '';
+            if (score >= 5) {
+                analysis = '<h3>🌟 ¡Excelente!</h3><p>Gran capacidad para recordar secuencias en orden.</p>';
+            } else if (score >= 3) {
+                analysis = '<h3>👍 Bien</h3><p>Recordaste varios pasos. El orden es lo más difícil.</p>';
+            } else {
+                analysis = '<h3>💭 Normal</h3><p>Las secuencias ordenadas requieren técnicas específicas. En el Día 5 aprenderás "L de LOCALIZAR" para esto.</p>';
+            }
+            document.getElementById('ex5-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex5-results');
+        }
+        
+        // EJERCICIO 6: Palabras abstractas
+        function checkEx6() {
+            const correctAnswers = ['Justicia', 'Velocidad', 'Esperanza', 'Libertad', 'Silencio', 
+                                   'Armonía', 'Valentía', 'Paciencia', 'Humildad', 'Sabiduría'];
+            
+            const userAnswers = [];
+            for (let i = 1; i <= 10; i++) {
+                userAnswers.push(document.getElementById('ex6-input' + i).value);
+            }
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;">';
+            
+            userAnswers.forEach((answer, index) => {
+                const isCorrect = correctAnswers.some(correct => checkMatch(answer, correct));
+                if (isCorrect && answer.trim() !== '') {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        ✓ "${answer}" - ¡Correcto! (1 punto)
+                    </div>`;
+                } else if (answer.trim() !== '') {
+                    feedbackHTML += `<div class="result-item incorrect">
+                        ✗ "${answer}" - No estaba en la lista (0 puntos)
+                    </div>`;
+                } else {
+                    feedbackHTML += `<div class="result-item">
+                        ○ En blanco (0 puntos)
+                    </div>`;
+                }
+            });
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex6 = score;
+            document.getElementById('ex6-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex6-score').textContent = score + ' / 10';
+            
+            let analysis = '';
+            if (score >= 8) {
+                analysis = '<h3>🌟 ¡Impresionante!</h3><p>Las palabras abstractas son las MÁS difíciles. Gran memoria.</p>';
+            } else if (score >= 5) {
+                analysis = '<h3>👍 Bien</h3><p>Recordaste la mitad. Las palabras abstractas necesitan asociación emocional.</p>';
+            } else {
+                analysis = '<h3>💭 Normal</h3><p>Las palabras abstractas son las más difíciles de memorizar. En el Día 3 aprenderás "A de ASOCIAR - Emocional" para esto.</p>';
+            }
+            document.getElementById('ex6-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex6-results');
+        }
+        
+        // EJERCICIO 7: Teléfono
+        function checkEx7() {
+            const correct = '+34612847395';
+            const userAnswer = document.getElementById('ex7-input').value.replace(/[\s\-]/g, '');
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;"><h3 style="margin-bottom: 15px;">Comparación dígito por dígito:</h3>';
+            
+            const correctDigits = correct.split('');
+            const userDigits = userAnswer.split('');
+            
+            correctDigits.forEach((digit, i) => {
+                const userDigit = userDigits[i] || '?';
+                const isCorrect = userDigit === digit;
+                
+                if (isCorrect) {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        Posición ${i + 1}: "${userDigit}" ✓ Correcto (1 punto)
+                    </div>`;
+                } else {
+                    feedbackHTML += `<div class="result-item incorrect">
+                        Posición ${i + 1}: Escribiste "${userDigit}" - Era "${digit}" (0 puntos)
+                    </div>`;
+                }
+            });
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex7 = score;
+            document.getElementById('ex7-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex7-score').textContent = score + ' / 10';
+            
+            let analysis = '';
+            if (score >= 9) {
+                analysis = '<h3>🌟 ¡Excelente!</h3><p>Memoria numérica sobresaliente.</p>';
+            } else if (score >= 6) {
+                analysis = '<h3>👍 Bien</h3><p>Los teléfonos son números largos. En el Día 2 aprenderás a segmentarlos.</p>';
+            } else {
+                analysis = '<h3>💭 Normal</h3><p>Los teléfonos son difíciles sin técnica. El método S.A.L.T.O. te ayudará a recordarlos en la primera vez.</p>';
+            }
+            document.getElementById('ex7-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex7-results');
+        }
+        
+        // EJERCICIO 8: Datos de persona
+        function checkEx8() {
+            const correctAnswers = ['Escalada', 'Valencia', 'Laura Martínez', 'Arquitecta', '34'];
+            const labels = ['Hobby', 'Ciudad', 'Nombre', 'Profesión', 'Edad'];
+            
+            const userAnswers = [];
+            for (let i = 1; i <= 5; i++) {
+                userAnswers.push(document.getElementById('ex8-input' + i).value);
+            }
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;">';
+            
+            userAnswers.forEach((answer, index) => {
+                let isCorrect = checkMatch(answer, correctAnswers[index]);
+                
+                // Caso especial para Profesión (index 3): aceptar género masculino/femenino
+                if (index === 3 && answer.trim() !== '') {
+                    if (normalizeGender(answer) === normalizeGender(correctAnswers[index])) {
+                        isCorrect = true;
+                    }
+                }
+                
+                // Caso especial para Edad (ahora index 4): aceptar "34" o "34 años" o variantes
+                if (index === 4 && answer.trim() !== '') {
+                    const normalized = normalizeText(answer);
+                    // Aceptar si contiene "34" (cubre: "34", "34 años", "34 anos", "34años", etc.)
+                    if (normalized.includes('34')) {
+                        isCorrect = true;
+                    }
+                }
+                
+                if (isCorrect) {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        ✓ ${labels[index]}: "${answer}" - ¡Correcto! (1 punto)
+                    </div>`;
+                } else if (answer.trim() !== '') {
+                    feedbackHTML += `<div class="result-item incorrect">
+                        ✗ ${labels[index]}: Escribiste "${answer}" - Era "${correctAnswers[index]}" (0 puntos)
+                    </div>`;
+                } else {
+                    feedbackHTML += `<div class="result-item">
+                        ○ ${labels[index]}: En blanco - Era "${correctAnswers[index]}" (0 puntos)
+                    </div>`;
+                }
+            });
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex8 = score;
+            document.getElementById('ex8-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex8-score').textContent = score + ' / 5';
+            
+            let analysis = '';
+            if (score === 5) {
+                analysis = '<h3>🌟 ¡Perfecto!</h3><p>Recordaste todos los datos. Excelente memoria para perfiles.</p>';
+            } else if (score >= 3) {
+                analysis = '<h3>👍 Bien</h3><p>Recordaste la mayoría. Los perfiles combinan varios tipos de memoria.</p>';
+            } else {
+                analysis = '<h3>💭 Normal</h3><p>Los perfiles son difíciles porque mezclan nombres, números y conceptos. El S.A.L.T.O. integra todo.</p>';
+            }
+            document.getElementById('ex8-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex8-results');
+        }
+        
+        // Normalizar género en profesiones (arquitecto=arquitecta, ingeniero=ingeniera, etc.)
+        function normalizeGender(word) {
+            const normalized = normalizeText(word);
+            
+            // Diccionario de profesiones comunes con ambos géneros
+            const professions = {
+                'arquitecto': 'arquitect',
+                'arquitecta': 'arquitect',
+                'ingeniero': 'ingenier',
+                'ingeniera': 'ingenier',
+                'medico': 'medic',
+                'medica': 'medic',
+                'abogado': 'abogad',
+                'abogada': 'abogad',
+                'profesor': 'profesor',
+                'profesora': 'profesor',
+                'doctor': 'doctor',
+                'doctora': 'doctor',
+                'contador': 'contador',
+                'contadora': 'contador',
+                'disenador': 'disenad',
+                'disenadora': 'disenad',
+                'programador': 'programador',
+                'programadora': 'programador'
+            };
+            
+            // Si la palabra está en el diccionario, devolver la raíz
+            if (professions[normalized]) {
+                return professions[normalized];
+            }
+            
+            // Si termina en 'o' o 'a', quitar la última letra (normalización genérica)
+            if (normalized.endsWith('o') || normalized.endsWith('a')) {
+                return normalized.slice(0, -1);
+            }
+            
+            return normalized;
+        }
+        
+        // EJERCICIO 9: Símbolos
+        // Función para copiar símbolos al portapapeles
+        function copyToClipboard(symbol) {
+            navigator.clipboard.writeText(symbol).then(() => {
+                // Mostrar feedback visual
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓';
+                btn.style.background = '#10B981';
+                btn.style.color = 'white';
+                btn.style.borderColor = '#059669';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = 'white';
+                    btn.style.color = 'black';
+                    btn.style.borderColor = '#CBD5E1';
+                }, 600);
+            }).catch(err => {
+                alert('Símbolo: ' + symbol + '\n\nCopia manualmente este símbolo.');
+            });
+        }
+        
+        function checkEx9() {
+            const correctAnswers = ['★', '◆', '●', '▲', '■', '✖'];
+            
+            const userAnswers = [];
+            for (let i = 1; i <= 6; i++) {
+                userAnswers.push(document.getElementById('ex9-input' + i).value.trim());
+            }
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;">';
+            
+            userAnswers.forEach((answer, index) => {
+                const isCorrect = answer === correctAnswers[index];
+                if (isCorrect) {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        ✓ Posición ${index + 1}: "${answer}" - ¡Correcto y en orden! (1 punto)
+                    </div>`;
+                } else if (answer !== '') {
+                    const correctIndex = correctAnswers.indexOf(answer);
+                    if (correctIndex !== -1) {
+                        feedbackHTML += `<div class="result-item incorrect">
+                            ⚠ Posición ${index + 1}: "${answer}" - Correcto pero en posición equivocada (era posición ${correctIndex + 1}) (0 puntos)
+                        </div>`;
+                    } else {
+                        feedbackHTML += `<div class="result-item incorrect">
+                            ✗ Posición ${index + 1}: "${answer}" - No estaba en la secuencia (0 puntos)
+                        </div>`;
+                    }
+                } else {
+                    feedbackHTML += `<div class="result-item">
+                        ○ Posición ${index + 1}: En blanco - Era "${correctAnswers[index]}" (0 puntos)
+                    </div>`;
+                }
+            });
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex9 = score;
+            document.getElementById('ex9-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex9-score').textContent = score + ' / 6';
+            
+            let analysis = '';
+            if (score >= 5) {
+                analysis = '<h3>🌟 ¡Excelente!</h3><p>Gran memoria visual y secuencial.</p>';
+            } else if (score >= 3) {
+                analysis = '<h3>👍 Bien</h3><p>Los símbolos abstractos son difíciles. Buen desempeño.</p>';
+            } else {
+                analysis = '<h3>💭 Normal</h3><p>Los símbolos abstractos son muy difíciles sin un sistema. En el Día 6 aprenderás "T de TRANSFORMAR" para esto.</p>';
+            }
+            document.getElementById('ex9-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex9-results');
+        }
+        
+        // EJERCICIO 10: Texto corto
+        function checkEx10() {
+            const correctAnswers = ['Azul', 'Robles', '15', 'Juan', '1989'];
+            const labels = ['Color', 'Calle', 'Día', 'Nombre', 'Año'];
+            
+            const userAnswers = [];
+            for (let i = 1; i <= 5; i++) {
+                userAnswers.push(document.getElementById('ex10-input' + i).value);
+            }
+            
+            let score = 0;
+            let feedbackHTML = '<div style="margin-top: 20px;">';
+            
+            userAnswers.forEach((answer, index) => {
+                let isCorrect = checkMatch(answer, correctAnswers[index]);
+                
+                // Caso especial para Profesión (index 3): aceptar género masculino/femenino
+                if (index === 3 && answer.trim() !== '') {
+                    if (normalizeGender(answer) === normalizeGender(correctAnswers[index])) {
+                        isCorrect = true;
+                    }
+                }
+                
+                // Caso especial para Edad (ahora index 4): aceptar "34" o "34 años" o variantes
+                if (index === 4 && answer.trim() !== '') {
+                    const normalized = normalizeText(answer);
+                    // Aceptar si contiene "34" (cubre: "34", "34 años", "34 anos", "34años", etc.)
+                    if (normalized.includes('34')) {
+                        isCorrect = true;
+                    }
+                }
+                
+                if (isCorrect) {
+                    score++;
+                    feedbackHTML += `<div class="result-item correct">
+                        ✓ ${labels[index]}: "${answer}" - ¡Correcto! (1 punto)
+                    </div>`;
+                } else if (answer.trim() !== '') {
+                    feedbackHTML += `<div class="result-item incorrect">
+                        ✗ ${labels[index]}: Escribiste "${answer}" - Era "${correctAnswers[index]}" (0 puntos)
+                    </div>`;
+                } else {
+                    feedbackHTML += `<div class="result-item">
+                        ○ ${labels[index]}: En blanco - Era "${correctAnswers[index]}" (0 puntos)
+                    </div>`;
+                }
+            });
+            
+            feedbackHTML += '</div>';
+            
+            scores.ex10 = score;
+            document.getElementById('ex10-feedback').innerHTML = feedbackHTML;
+            document.getElementById('ex10-score').textContent = score + ' / 5';
+            
+            let analysis = '';
+            if (score === 5) {
+                analysis = '<h3>🌟 ¡Perfecto!</h3><p>Excelente capacidad para extraer datos clave de un texto.</p>';
+            } else if (score >= 3) {
+                analysis = '<h3>👍 Bien</h3><p>Recordaste la mayoría de los datos importantes.</p>';
+            } else {
+                analysis = '<h3>💭 Normal</h3><p>Extraer datos específicos de un texto es difícil. El método S.A.L.T.O. te ayudará a identificar y retener información clave.</p>';
+            }
+            document.getElementById('ex10-analysis').innerHTML = analysis;
+            
+            goToScreen('screen-ex10-results');
+        }
+        
+        // Mostrar resultados finales
+        function showFinalResults() {
+            const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
+            
+            document.getElementById('final-score').textContent = totalScore + ' / 70';
+            
+            let interpretation = '';
+            let levelClass = '';
+            
+            if (totalScore <= 20) {
+                interpretation = `
+                    <h3>📊 NIVEL PRINCIPIANTE (0-20 puntos)</h3>
+                    <p>Tu memoria funciona en "modo supervivencia". Olvidas rápido porque tu cerebro no tiene un sistema organizado para retener información.</p>
+                    <p><strong>✅ Perfecto para este curso.</strong></p>
+                    <p>Tienes MUCHO margen de mejora. En 7 días, con el método S.A.L.T.O., verás cambios significativos.</p>
+                    <p style="margin-top: 15px; padding: 15px; background: #E0F2FE; border-radius: 10px; border-left: 4px solid #0EA5E9;">
+                        <strong>💡 Tu potencial de mejora: +30 a +45 puntos</strong><br>
+                        La mayoría de alumnos que empiezan en este rango duplican o triplican su puntuación en el Día 7.
+                    </p>
+                `;
+            } else if (totalScore <= 40) {
+                interpretation = `
+                    <h3>📊 NIVEL PROMEDIO (21-40 puntos)</h3>
+                    <p>Tu memoria es "normal". Recuerdas lo básico pero se te escapan detalles importantes.</p>
+                    <p><strong>✅ El S.A.L.T.O. te llevará al siguiente nivel en 7 días.</strong></p>
+                    <p>Tienes una base sólida. El curso te dará las herramientas para pasar de "memoria promedio" a "memoria excepcional".</p>
+                    <p style="margin-top: 15px; padding: 15px; background: #E0F2FE; border-radius: 10px; border-left: 4px solid #0EA5E9;">
+                        <strong>💡 Tu potencial de mejora: +20 a +30 puntos</strong><br>
+                        Los alumnos en este rango suelen alcanzar 60-65 puntos en el Día 7.
+                    </p>
+                `;
+            } else if (totalScore <= 55) {
+                interpretation = `
+                    <h3>📊 NIVEL BUENO (41-55 puntos)</h3>
+                    <p>Tienes buena memoria natural, pero aún dependes de la repetición y el esfuerzo.</p>
+                    <p><strong>✅ Este curso la convertirá en una herramienta profesional sistemática.</strong></p>
+                    <p>No necesitas "mejorar" tu memoria, necesitas <em>sistematizarla</em> para que funcione de forma predecible y confiable.</p>
+                    <p style="margin-top: 15px; padding: 15px; background: #E0F2FE; border-radius: 10px; border-left: 4px solid #0EA5E9;">
+                        <strong>💡 Tu potencial de mejora: +10 a +20 puntos</strong><br>
+                        Los alumnos en este rango alcanzan puntuaciones de 65-70 en el Día 7, con menos esfuerzo.
+                    </p>
+                `;
+            } else {
+                interpretation = `
+                    <h3>📊 NIVEL EXCEPCIONAL (56-70 puntos)</h3>
+                    <p>Tu memoria es superior al promedio. Tienes un talento natural impresionante.</p>
+                    <p><strong>✅ Este curso te enseñará a sistematizarla para no depender del "talento".</strong></p>
+                    <p>El problema del talento natural es que es <em>inconsistente</em>. Algunos días funciona, otros no. El S.A.L.T.O. te dará un sistema que funciona <strong>siempre</strong>.</p>
+                    <p style="margin-top: 15px; padding: 15px; background: #E0F2FE; border-radius: 10px; border-left: 4px solid #0EA5E9;">
+                        <strong>💡 Tu objetivo: Consistencia y velocidad</strong><br>
+                        En el Día 7, lograrás 65-70 puntos pero en MENOS TIEMPO y con MENOS esfuerzo.
+                    </p>
+                `;
+            }
+            
+            document.getElementById('final-interpretation').innerHTML = interpretation;
+            
+            goToScreen('screen-final');
+        }
+        
+        // Guardar resultados
+        function saveResults() {
+            const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
+            const date = new Date().toLocaleDateString('es-ES');
+            
+            const results = {
+                date: date,
+                totalScore: totalScore,
+                scores: scores,
+                version: 'Día 1'
+            };
+            
+            localStorage.setItem('memoryTestDay1', JSON.stringify(results));
+            
+            alert('✅ Resultados guardados\n\nTus resultados del Día 1 se han guardado en tu navegador.\n\nEn el Día 7, podrás compararlos con tus nuevos resultados tras aprender el método S.A.L.T.O.\n\n¡Ahora ve al Video 1.1 para empezar el curso! 🚀');
+        }
+    </script>
+</body>
+</html>

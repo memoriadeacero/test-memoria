@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día 3: Asocia con tu Vida</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .instruction {
+            background: #fff5f7;
+            border-left: 5px solid #f5576c;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .instruction h2 {
+            color: #f5576c;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction ul {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .instruction ul li {
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .exercise {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #fafafa;
+            border-radius: 12px;
+            border: 2px solid #f0f0f0;
+        }
+        
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .exercise-number {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .exercise-title {
+            color: #f5576c;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .data-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 2px solid #f093fb;
+        }
+        
+        .data-box strong {
+            color: #f5576c;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .data-content {
+            color: #212529;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .label {
+            display: block;
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .input-area {
+            width: 100%;
+            min-height: 80px;
+            padding: 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        .input-area:focus {
+            outline: none;
+            border-color: #f5576c;
+            box-shadow: 0 0 0 3px rgba(245, 87, 108, 0.1);
+        }
+        
+        .example-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0288d1;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #01579b;
+        }
+        
+        .example-box strong {
+            color: #01579b;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .conclusion h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .save-notice {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .save-notice {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💗 MEMORIA DE ACERO</h1>
+            <p>DÍA 3: EJERCICIO - ASOCIA CON TU VIDA</p>
+        </div>
+        
+        <div class="content">
+            <div class="instruction">
+                <h2>🎯 OBJETIVO DEL EJERCICIO:</h2>
+                <p>Practicar la técnica de <strong>ASOCIACIÓN EMOCIONAL</strong>.</p>
+                <p>Vas a conectar <strong>5 números</strong> y <strong>5 nombres</strong> con personas, momentos o lugares significativos de tu vida.</p>
+                <p><strong>Recuerda:</strong></p>
+                <ul>
+                    <li>Busca la conexión más <strong>emocional</strong> posible</li>
+                    <li>Puede ser: una persona importante, un momento significativo, un lugar que te marcó</li>
+                    <li>Visualiza esa conexión por <strong>3 segundos</strong> antes de escribir</li>
+                </ul>
+                <p><strong>Tiempo estimado:</strong> 5-7 minutos</p>
+            </div>
+            
+            <!-- SECCIÓN NÚMEROS -->
+            <div class="section">
+                <div class="section-title">
+                    🔢 PARTE 1: ASOCIA 5 NÚMEROS CON TU VIDA
+                </div>
+                
+                <div class="example-box">
+                    <strong>💡 EJEMPLO:</strong><br>
+                    Número: <strong>23</strong><br>
+                    Asociación: "Tenía 23 años cuando conocí a mi pareja. Ese día cambió mi vida."
+                </div>
+                
+                <!-- NÚMERO 1 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">1</span>
+                        <span class="exercise-title">NÚMERO: 15</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">15</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Qué significa el 15 para ti? (edad, fecha, evento, dirección...):</label>
+                    <textarea class="input-area" id="numero1" placeholder="Ejemplo: Tenía 15 años cuando..."></textarea>
+                </div>
+                
+                <!-- NÚMERO 2 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">2</span>
+                        <span class="exercise-title">NÚMERO: 28</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">28</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Qué significa el 28 para ti?:</label>
+                    <textarea class="input-area" id="numero2" placeholder="Ejemplo: El 28 es el cumpleaños de..."></textarea>
+                </div>
+                
+                <!-- NÚMERO 3 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">3</span>
+                        <span class="exercise-title">NÚMERO: 7</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">7</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Qué significa el 7 para ti?:</label>
+                    <textarea class="input-area" id="numero3" placeholder="Ejemplo: Vivía en el número 7 cuando..."></textarea>
+                </div>
+                
+                <!-- NÚMERO 4 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">4</span>
+                        <span class="exercise-title">NÚMERO: 42</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">42</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Qué significa el 42 para ti?:</label>
+                    <textarea class="input-area" id="numero4" placeholder="Ejemplo: Mi padre tenía 42 años cuando..."></textarea>
+                </div>
+                
+                <!-- NÚMERO 5 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">5</span>
+                        <span class="exercise-title">NÚMERO: 31</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">31</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Qué significa el 31 para ti?:</label>
+                    <textarea class="input-area" id="numero5" placeholder="Ejemplo: El día 31 siempre..."></textarea>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN NOMBRES -->
+            <div class="section">
+                <div class="section-title">
+                    👥 PARTE 2: ASOCIA 5 NOMBRES CON PERSONAS DE TU VIDA
+                </div>
+                
+                <div class="example-box">
+                    <strong>💡 EJEMPLO:</strong><br>
+                    Nombre: <strong>Carlos</strong><br>
+                    Asociación: "Mi tío Carlos fue quien me enseñó a andar en bici. Siempre me hacía reír."
+                </div>
+                
+                <!-- NOMBRE 1 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">1</span>
+                        <span class="exercise-title">NOMBRE: ANA</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">ANA</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Conoces a alguien importante llamado/a Ana? ¿Qué representa para ti?:</label>
+                    <textarea class="input-area" id="nombre1" placeholder="Ejemplo: Ana era mi mejor amiga en la escuela..."></textarea>
+                </div>
+                
+                <!-- NOMBRE 2 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">2</span>
+                        <span class="exercise-title">NOMBRE: MIGUEL</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">MIGUEL</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Conoces a alguien importante llamado Miguel? ¿Qué representa para ti?:</label>
+                    <textarea class="input-area" id="nombre2" placeholder="Ejemplo: Miguel es mi hermano..."></textarea>
+                </div>
+                
+                <!-- NOMBRE 3 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">3</span>
+                        <span class="exercise-title">NOMBRE: LAURA</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">LAURA</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Conoces a alguien importante llamado/a Laura? ¿Qué representa para ti?:</label>
+                    <textarea class="input-area" id="nombre3" placeholder="Ejemplo: Laura fue mi primera profesora..."></textarea>
+                </div>
+                
+                <!-- NOMBRE 4 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">4</span>
+                        <span class="exercise-title">NOMBRE: DAVID</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">DAVID</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Conoces a alguien importante llamado David? ¿Qué representa para ti?:</label>
+                    <textarea class="input-area" id="nombre4" placeholder="Ejemplo: David era mi vecino de infancia..."></textarea>
+                </div>
+                
+                <!-- NOMBRE 5 -->
+                <div class="exercise">
+                    <div class="exercise-header">
+                        <span class="exercise-number">5</span>
+                        <span class="exercise-title">NOMBRE: MARÍA</span>
+                    </div>
+                    
+                    <div class="data-box">
+                        <strong>🎯 TU TAREA:</strong>
+                        <div class="data-content">MARÍA</div>
+                    </div>
+                    
+                    <label class="label">✏️ ¿Conoces a alguien importante llamado/a María? ¿Qué representa para ti?:</label>
+                    <textarea class="input-area" id="nombre5" placeholder="Ejemplo: María es mi abuela..."></textarea>
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                <h2>🎉 ¡FELICIDADES!</h2>
+                <p>Has practicado la técnica de <strong>ASOCIACIÓN EMOCIONAL</strong>.</p>
+                <p>Ahora sabes cómo conectar cualquier información nueva con tus recuerdos más poderosos.</p>
+                <p><strong>CLAVE:</strong> Tu cerebro recuerda lo que SIENTE, no lo que piensa.</p>
+                <p><strong>MAÑANA:</strong> Día 4 - A de ASOCIAR (Absurdo)<br>¿Qué hacer cuando NO tienes una conexión emocional? Ahí entra lo ABSURDO.</p>
+            </div>
+            
+            <div class="save-notice">
+                💾 Tus respuestas se guardan automáticamente en tu navegador
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-guardar respuestas en localStorage
+        const textareas = document.querySelectorAll('.input-area');
+        
+        // Cargar respuestas guardadas
+        textareas.forEach(textarea => {
+            const savedValue = localStorage.getItem(textarea.id);
+            if (savedValue) {
+                textarea.value = savedValue;
+            }
+            
+            // Guardar al escribir
+            textarea.addEventListener('input', function() {
+                localStorage.setItem(this.id, this.value);
+            });
+        });
+        
+        // Mensaje de confirmación al salir si hay cambios sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            const hasContent = Array.from(textareas).some(ta => ta.value.trim() !== '');
+            if (hasContent) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

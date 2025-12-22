@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día 2: Ejercicio Segmenta 5 Listas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .instruction {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .instruction h2 {
+            color: #667eea;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .exercise {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .exercise h3 {
+            color: #667eea;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .exercise-number {
+            background: #667eea;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .data-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .data-box strong {
+            color: #495057;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .data-content {
+            color: #212529;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .input-area {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        .input-area:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .label {
+            display: block;
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .conclusion h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        .save-notice {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .save-notice {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 MEMORIA DE ACERO</h1>
+            <p>DÍA 2: EJERCICIO - SEGMENTA 5 LISTAS</p>
+        </div>
+        
+        <div class="content">
+            <div class="instruction">
+                <h2>📋 INSTRUCCIONES:</h2>
+                <p>Aplica la técnica de SEGMENTACIÓN que aprendiste en el video. Divide cada lista en grupos de MÁXIMO 5 elementos. Escribe cómo agruparías cada una.</p>
+                <p><strong>Tiempo estimado:</strong> 5 minutos</p>
+            </div>
+            
+            <!-- EJERCICIO 1 -->
+            <div class="exercise">
+                <h3>
+                    <span class="exercise-number">1</span>
+                    NÚMERO DE 15 DÍGITOS
+                </h3>
+                
+                <div class="data-box">
+                    <strong>DATO ORIGINAL:</strong>
+                    <div class="data-content">8 5 2 9 4 6 1 7 3 0 5 8 2 9 4</div>
+                </div>
+                
+                <label class="label">✏️ Escribe cómo lo segmentarías (ejemplo: 85294 / 61730 / 58294):</label>
+                <textarea class="input-area" id="ejercicio1" placeholder="Escribe aquí tu segmentación..."></textarea>
+            </div>
+            
+            <!-- EJERCICIO 2 -->
+            <div class="exercise">
+                <h3>
+                    <span class="exercise-number">2</span>
+                    LISTA DE 20 PALABRAS
+                </h3>
+                
+                <div class="data-box">
+                    <strong>DATO ORIGINAL:</strong>
+                    <div class="data-content">MESA - LIBRO - TELÉFONO - LÁPIZ - COMPUTADORA - SILLA - CAFÉ - RELOJ - VENTANA - PUERTA - LÁMPARA - BOLÍGRAFO - CUADERNO - GAFAS - AGUA - TECLADO - RATÓN - PLANTA - FOTO - CARTERA</div>
+                </div>
+                
+                <label class="label">✏️ Agrupa las palabras en chunks de máximo 5:</label>
+                <textarea class="input-area" id="ejercicio2" placeholder="Ejemplo: 
+Grupo 1: MESA - LIBRO - TELÉFONO - LÁPIZ - COMPUTADORA
+Grupo 2: ..."></textarea>
+            </div>
+            
+            <!-- EJERCICIO 3 -->
+            <div class="exercise">
+                <h3>
+                    <span class="exercise-number">3</span>
+                    10 NOMBRES COMPLETOS
+                </h3>
+                
+                <div class="data-box">
+                    <strong>DATO ORIGINAL:</strong>
+                    <div class="data-content">Carlos Mendoza - Ana Torres - Luis García - María Fernández - José Rodríguez - Laura Martínez - Pedro Sánchez - Isabel López - Miguel Pérez - Carmen Gómez</div>
+                </div>
+                
+                <label class="label">✏️ Divide los nombres en grupos de 5:</label>
+                <textarea class="input-area" id="ejercicio3" placeholder="Escribe aquí tu segmentación..."></textarea>
+            </div>
+            
+            <!-- EJERCICIO 4 -->
+            <div class="exercise">
+                <h3>
+                    <span class="exercise-number">4</span>
+                    15 TAREAS DEL DÍA
+                </h3>
+                
+                <div class="data-box">
+                    <strong>DATO ORIGINAL:</strong>
+                    <div class="data-content">
+                        1. Revisar emails<br>
+                        2. Llamar al dentista<br>
+                        3. Comprar pan<br>
+                        4. Enviar informe<br>
+                        5. Recoger ropa lavandería<br>
+                        6. Reunión equipo 3pm<br>
+                        7. Pagar factura luz<br>
+                        8. Comprar regalo cumpleaños<br>
+                        9. Llevar coche taller<br>
+                        10. Preparar presentación<br>
+                        11. Llamar mamá<br>
+                        12. Renovar seguro<br>
+                        13. Hacer ejercicio<br>
+                        14. Comprar comida gato<br>
+                        15. Leer capítulo libro
+                    </div>
+                </div>
+                
+                <label class="label">✏️ Agrupa las tareas en 3 bloques de 5:</label>
+                <textarea class="input-area" id="ejercicio4" placeholder="Bloque 1 (Tareas 1-5):
+Bloque 2 (Tareas 6-10):
+Bloque 3 (Tareas 11-15):"></textarea>
+            </div>
+            
+            <!-- EJERCICIO 5 -->
+            <div class="exercise">
+                <h3>
+                    <span class="exercise-number">5</span>
+                    12 PALABRAS EN INGLÉS (VOCABULARIO)
+                </h3>
+                
+                <div class="data-box">
+                    <strong>DATO ORIGINAL:</strong>
+                    <div class="data-content">WINDOW - DOOR - TABLE - CHAIR - COMPUTER - PHONE - BOOK - PEN - PAPER - WATER - COFFEE - LIGHT</div>
+                </div>
+                
+                <label class="label">✏️ Segmenta el vocabulario en grupos de máximo 5 palabras:</label>
+                <textarea class="input-area" id="ejercicio5" placeholder="Grupo 1: ...
+Grupo 2: ...
+Grupo 3: ..."></textarea>
+            </div>
+            
+            <div class="conclusion">
+                <h2>🎯 ¡EXCELENTE TRABAJO!</h2>
+                <p>Has completado tu práctica de SEGMENTACIÓN.</p>
+                <p>Recuerda: <strong>La regla del 7±2 es clave.</strong> Nunca intentes memorizar más de 5 elementos sin segmentar.</p>
+                <p><strong>MAÑANA:</strong> Día 3 - A de ASOCIAR (El poder de lo absurdo)</p>
+            </div>
+            
+            <div class="save-notice">
+                💾 Tus respuestas se guardan automáticamente en tu navegador
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-guardar respuestas en localStorage
+        const textareas = document.querySelectorAll('.input-area');
+        
+        // Cargar respuestas guardadas
+        textareas.forEach(textarea => {
+            const savedValue = localStorage.getItem(textarea.id);
+            if (savedValue) {
+                textarea.value = savedValue;
+            }
+            
+            // Guardar al escribir
+            textarea.addEventListener('input', function() {
+                localStorage.setItem(this.id, this.value);
+            });
+        });
+        
+        // Mensaje de confirmación al salir si hay cambios sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            const hasContent = Array.from(textareas).some(ta => ta.value.trim() !== '');
+            if (hasContent) {
+                // Los navegadores modernos mostrarán su propio mensaje
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

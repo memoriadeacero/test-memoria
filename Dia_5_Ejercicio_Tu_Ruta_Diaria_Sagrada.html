@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día 5: Tu Ruta Diaria Sagrada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .instruction {
+            background: #fff8e1;
+            border-left: 5px solid #ff6f00;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .instruction h2 {
+            color: #ff6f00;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction ul {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .instruction ul li {
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .step-box {
+            background: #fff8e1;
+            border: 2px solid #ffb300;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .step-box h3 {
+            color: #ff6f00;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .route-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .place-box {
+            background: white;
+            border: 2px solid #ffb300;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .place-number {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .label {
+            display: block;
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #fa709a;
+            box-shadow: 0 0 0 3px rgba(250, 112, 154, 0.1);
+        }
+        
+        .input-area {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        .input-area:focus {
+            outline: none;
+            border-color: #fa709a;
+            box-shadow: 0 0 0 3px rgba(250, 112, 154, 0.1);
+        }
+        
+        .example-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #2e7d32;
+        }
+        
+        .example-box strong {
+            color: #1b5e20;
+        }
+        
+        .practice-item {
+            background: #f8fcff;
+            border: 2px solid #ffb300;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .practice-item strong {
+            color: #ff6f00;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .conclusion h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .save-notice {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .save-notice {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .route-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ MEMORIA DE ACERO</h1>
+            <p>DÍA 5: EJERCICIO - TU RUTA DIARIA SAGRADA</p>
+        </div>
+        
+        <div class="content">
+            <div class="instruction">
+                <h2>🎯 OBJETIVO DEL EJERCICIO:</h2>
+                <p>Crear tu <strong>RUTA DIARIA SAGRADA</strong> de 10 lugares.</p>
+                <p>Esta ruta será tu herramienta para memorizar cualquier lista larga en orden.</p>
+                <p><strong>Usarás tu memoria espacial</strong> (la más poderosa) para anclar información nueva en lugares que ya conoces perfectamente.</p>
+                <p><strong>Tiempo estimado:</strong> 10 minutos</p>
+            </div>
+            
+            <!-- PASO 1: ELIGE TU LUGAR -->
+            <div class="section">
+                <div class="section-title">
+                    📍 PASO 1: ELIGE TU LUGAR BASE
+                </div>
+                
+                <div class="step-box">
+                    <h3>
+                        <span class="step-number">1</span>
+                        ¿Qué lugar conoces PERFECTAMENTE?
+                    </h3>
+                    <p style="color: #555; margin-bottom: 15px;">Elige UN lugar que recorras todos los días y que conozcas de memoria:</p>
+                    
+                    <div class="example-box">
+                        <strong>✅ EJEMPLOS VÁLIDOS:</strong><br>
+                        • Tu casa (la mejor opción)<br>
+                        • Tu oficina o lugar de trabajo<br>
+                        • Tu camino al trabajo<br>
+                        • Tu barrio (panadería → parque → súper → banco...)<br>
+                        • La casa de tus padres
+                    </div>
+                    
+                    <label class="label">✏️ Escribe el lugar que elegiste:</label>
+                    <input type="text" class="input-field" id="lugar_base" placeholder="Ejemplo: Mi casa">
+                </div>
+            </div>
+            
+            <!-- PASO 2: DEFINE TUS 10 LUGARES -->
+            <div class="section">
+                <div class="section-title">
+                    🔟 PASO 2: DEFINE TUS 10 LUGARES ESPECÍFICOS
+                </div>
+                
+                <div class="step-box">
+                    <h3>
+                        <span class="step-number">2</span>
+                        Identifica 10 puntos fijos en ORDEN LÓGICO
+                    </h3>
+                    <p style="color: #555; margin-bottom: 10px;"><strong>IMPORTANTE:</strong></p>
+                    <ul style="margin-left: 20px; color: #555; margin-bottom: 15px;">
+                        <li>Deben ser <strong>objetos FIJOS</strong> (no cosas que se mueven)</li>
+                        <li>El orden debe ser <strong>NATURAL</strong> (el recorrido que harías normalmente)</li>
+                        <li><strong>NUNCA cambies</strong> este orden</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <strong>❌ NO USES:</strong> Celular, mochila, libro (se mueven)<br>
+                        <strong>✅ SÍ USA:</strong> Puerta, sofá, mesa, refrigerador (fijos)
+                    </div>
+                </div>
+                
+                <div class="route-grid">
+                    <div class="place-box">
+                        <div class="place-number">1</div>
+                        <label class="label">Lugar 1:</label>
+                        <input type="text" class="input-field" id="lugar1" placeholder="Ej: Puerta de entrada">
+                    </div>
+                    
+                    <div class="place-box">
+                        <div class="place-number">2</div>
+                        <label class="label">Lugar 2:</label>
+                        <input type="text" class="input-field" id="lugar2" placeholder="Ej: Perchero">
+                    </div>
+                    
+                    <div class="place-box">
+                        <div class="place-number">3</div>
+                        <label class="label">Lugar 3:</label>
+                        <input type="text" class="input-field" id="lugar3" placeholder="Ej: Sofá">
+                    </div>
+                    
+                    <div class="place-box">
+                        <div class="place-number">4</div>
+                        <label class="label">Lugar 4:</label>
+                        <input type="text" class="input-field" id="lugar4" placeholder="Ej: Mesa del comedor">
+                    </div>
+                    
+                    <div class="place-box">
+                        <div class="place-number">5</div>
+                        <label class="label">Lugar 5:</label>
+                        <input type="text" class="input-field" id="lugar5" placeholder="Ej: Refrigerador">
+                    </div>
+                    
+                    <div class="place-box">
+                        <div class="place-number">6</div>
+                        <label class="label">Lugar 6:</label>
+                        <input type="text" class="input-field" id="lugar6" placeholder="Ej: Estufa">
+                    </div>
+                    
+                    <div class="place-box">
+                        <div class="place-number">7</div>
+                        <label class="label">Lugar 7:</label>
+                        <input type="text" class="input-field" id="lugar7" placeholder="Ej: Cama">
+                    </div>
+                    
+                    <div class="place-box">
+                        <div class="place-number">8</div>
+                        <label class="label">Lugar 8:</label>
+                        <input type="text" class="input-field" id="lugar8" placeholder="Ej: Escritorio">
+                    </div>
+                    
+                    <div class="place-box">
+                        <div class="place-number">9</div>
+                        <label class="label">Lugar 9:</label>
+                        <input type="text" class="input-field" id="lugar9" placeholder="Ej: Baño/Lavabo">
+                    </div>
+                    
+                    <div class="place-box">
+                        <div class="place-number">10</div>
+                        <label class="label">Lugar 10:</label>
+                        <input type="text" class="input-field" id="lugar10" placeholder="Ej: Ventana principal">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASO 3: PRACTICA -->
+            <div class="section">
+                <div class="section-title">
+                    🧠 PASO 3: PRACTICA - COLOCA 10 PRODUCTOS EN TU RUTA
+                </div>
+                
+                <div class="step-box">
+                    <h3>
+                        <span class="step-number">3</span>
+                        Lista de compras para memorizar
+                    </h3>
+                    <p style="color: #555; margin-bottom: 15px;">Ahora vas a colocar esta lista de 10 productos en tus 10 lugares usando <strong>imágenes ABSURDAS</strong>:</p>
+                    
+                    <div style="background: white; border: 2px solid #ffb300; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <strong style="color: #ff6f00; display: block; margin-bottom: 10px;">🛒 LISTA DE COMPRAS:</strong>
+                        <ol style="margin-left: 20px; color: #333;">
+                            <li>LECHE</li>
+                            <li>PAN</li>
+                            <li>HUEVOS</li>
+                            <li>TOMATES</li>
+                            <li>QUESO</li>
+                            <li>LECHUGA</li>
+                            <li>ARROZ</li>
+                            <li>PASTA</li>
+                            <li>PLÁTANOS</li>
+                            <li>ATÚN</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="example-box">
+                        <strong>💡 EJEMPLO:</strong><br>
+                        <strong>Lugar 1 (Puerta) + LECHE:</strong><br>
+                        "Una vaca GIGANTE bloqueando mi puerta, mugiendo como loca y disparando leche por todos lados."
+                    </div>
+                </div>
+                
+                <!-- EJERCICIOS DE PRÁCTICA -->
+                <div class="practice-item">
+                    <strong>🏠 Lugar 1: [Tu lugar 1] + LECHE</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica1" placeholder="Crea una imagen ridícula, exagerada e imposible con LECHE en tu primer lugar..."></textarea>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>🏠 Lugar 2: [Tu lugar 2] + PAN</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica2" placeholder="Crea una imagen ridícula con PAN en tu segundo lugar..."></textarea>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>🏠 Lugar 3: [Tu lugar 3] + HUEVOS</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica3" placeholder="Crea una imagen ridícula con HUEVOS en tu tercer lugar..."></textarea>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>🏠 Lugar 4: [Tu lugar 4] + TOMATES</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica4" placeholder="Crea una imagen ridícula con TOMATES en tu cuarto lugar..."></textarea>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>🏠 Lugar 5: [Tu lugar 5] + QUESO</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica5" placeholder="Crea una imagen ridícula con QUESO en tu quinto lugar..."></textarea>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>🏠 Lugar 6: [Tu lugar 6] + LECHUGA</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica6" placeholder="Crea una imagen ridícula con LECHUGA en tu sexto lugar..."></textarea>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>🏠 Lugar 7: [Tu lugar 7] + ARROZ</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica7" placeholder="Crea una imagen ridícula con ARROZ en tu séptimo lugar..."></textarea>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>🏠 Lugar 8: [Tu lugar 8] + PASTA</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica8" placeholder="Crea una imagen ridícula con PASTA en tu octavo lugar..."></textarea>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>🏠 Lugar 9: [Tu lugar 9] + PLÁTANOS</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica9" placeholder="Crea una imagen ridícula con PLÁTANOS en tu noveno lugar..."></textarea>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>🏠 Lugar 10: [Tu lugar 10] + ATÚN</strong>
+                    <label class="label">Describe tu imagen absurda:</label>
+                    <textarea class="input-area" id="practica10" placeholder="Crea una imagen ridícula con ATÚN en tu décimo lugar..."></textarea>
+                </div>
+            </div>
+            
+            <!-- TEST FINAL -->
+            <div class="section">
+                <div class="section-title">
+                    ✅ PASO 4: TEST - RECUERDA LOS 10 PRODUCTOS
+                </div>
+                
+                <div class="step-box">
+                    <h3>
+                        <span class="step-number">4</span>
+                        Ahora cierra los ojos y "camina" por tu ruta
+                    </h3>
+                    <p style="color: #555; margin-bottom: 15px;">Sin mirar la lista, recorre mentalmente tus 10 lugares y escribe qué producto colocaste en cada uno:</p>
+                    
+                    <label class="label">📝 Escribe los 10 productos EN ORDEN (solo los nombres):</label>
+                    <textarea class="input-area" id="test_final" style="min-height: 150px;" placeholder="Lugar 1: ...
+Lugar 2: ...
+Lugar 3: ...
+(continúa hasta el 10)"></textarea>
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                <h2>🎉 ¡FELICIDADES!</h2>
+                <p>Has creado tu <strong>RUTA DIARIA SAGRADA</strong>.</p>
+                <p>Esta ruta será tu herramienta para memorizar listas largas el resto de tu vida.</p>
+                <p><strong>RECUERDA:</strong> Siempre usa el MISMO orden. Nunca lo cambies.</p>
+                <p><strong>MAÑANA:</strong> Día 6 - T de TRANSFORMAR<br>Aprenderás a convertir información en micro-gestos físicos. Y ahí la memoria se vuelve PERMANENTE.</p>
+            </div>
+            
+            <div class="save-notice">
+                💾 Tus respuestas se guardan automáticamente en tu navegador
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-guardar respuestas en localStorage
+        const inputs = document.querySelectorAll('.input-field, .input-area');
+        
+        // Cargar respuestas guardadas
+        inputs.forEach(input => {
+            const savedValue = localStorage.getItem(input.id);
+            if (savedValue) {
+                input.value = savedValue;
+            }
+            
+            // Guardar al escribir
+            input.addEventListener('input', function() {
+                localStorage.setItem(this.id, this.value);
+            });
+        });
+        
+        // Mensaje de confirmación al salir si hay cambios sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            const hasContent = Array.from(inputs).some(input => input.value.trim() !== '');
+            if (hasContent) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

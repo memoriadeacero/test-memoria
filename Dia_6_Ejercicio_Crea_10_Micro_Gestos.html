@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día 6: Crea 10 Micro-gestos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .instruction {
+            background: #e0f7fa;
+            border-left: 5px solid #00796b;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .instruction h2 {
+            color: #00796b;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction ul {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .instruction ul li {
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .rules-box {
+            background: #fff9c4;
+            border: 2px solid #f9a825;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .rules-box h3 {
+            color: #f57f17;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .rules-box ul {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .rules-box ul li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .gesture-item {
+            background: #f1f8f4;
+            border: 2px solid #4db6ac;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .gesture-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .gesture-number {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .gesture-title {
+            color: #00796b;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .data-display {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            border: 1px solid #80cbc4;
+        }
+        
+        .data-display strong {
+            color: #00796b;
+            font-size: 15px;
+        }
+        
+        .data-display span {
+            color: #212529;
+            font-size: 17px;
+            font-weight: 600;
+        }
+        
+        .label {
+            display: block;
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .input-area {
+            width: 100%;
+            min-height: 70px;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        .input-area:focus {
+            outline: none;
+            border-color: #30cfd0;
+            box-shadow: 0 0 0 3px rgba(48, 207, 208, 0.1);
+        }
+        
+        .example-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #2e7d32;
+        }
+        
+        .example-box strong {
+            color: #1b5e20;
+        }
+        
+        .tip-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 13px;
+            color: #e65100;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .conclusion h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .save-notice {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .save-notice {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✋ MEMORIA DE ACERO</h1>
+            <p>DÍA 6: EJERCICIO - CREA 10 MICRO-GESTOS</p>
+        </div>
+        
+        <div class="content">
+            <div class="instruction">
+                <h2>🎯 OBJETIVO DEL EJERCICIO:</h2>
+                <p>Entrenar tu <strong>MEMORIA MUSCULAR</strong> creando micro-gestos únicos.</p>
+                <p>Un <strong>micro-gesto</strong> es un movimiento físico de 1-2 segundos que asocias con cada pieza de información.</p>
+                <p>Tu cerebro NUNCA olvida movimientos. Cuando combinas gestos con visualización, la memoria se vuelve PERMANENTE.</p>
+                <p><strong>Tiempo estimado:</strong> 7-10 minutos</p>
+            </div>
+            
+            <div class="rules-box">
+                <h3>📋 LAS 3 REGLAS DE LOS MICRO-GESTOS:</h3>
+                <ul>
+                    <li><strong>1. Que sea SIMPLE:</strong> 1-2 segundos máximo (no coreografías)</li>
+                    <li><strong>2. Que tenga sentido para TI:</strong> No importa si es obvio o no para otros</li>
+                    <li><strong>3. Que sea ÚNICO:</strong> Cada gesto representa UN SOLO dato</li>
+                </ul>
+            </div>
+            
+            <!-- SECCIÓN 1: NÚMEROS -->
+            <div class="section">
+                <div class="section-title">
+                    🔢 PARTE 1: CREA GESTOS PARA 5 NÚMEROS
+                </div>
+                
+                <div class="example-box">
+                    <strong>💡 EJEMPLO:</strong><br>
+                    <strong>Número 3:</strong> Levantas 3 dedos de tu mano derecha<br>
+                    <strong>Número 7:</strong> Haces una "L" con tu mano (porque 7 parece una L invertida)<br>
+                    <strong>Número 0:</strong> Haces un círculo con tu pulgar e índice
+                </div>
+                
+                <!-- NÚMERO 1 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">1</span>
+                        <span class="gesture-title">NÚMERO: 2</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU NÚMERO:</strong> <span>2</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para el número 2:</label>
+                    <textarea class="input-area" id="numero1" placeholder="Ejemplo: Levanto 2 dedos en forma de V (paz)"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 Ahora HAZ el gesto físicamente mientras lo escribes. Repítelo 3 veces.
+                    </div>
+                </div>
+                
+                <!-- NÚMERO 2 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">2</span>
+                        <span class="gesture-title">NÚMERO: 5</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU NÚMERO:</strong> <span>5</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para el número 5:</label>
+                    <textarea class="input-area" id="numero2" placeholder="Ejemplo: Abro mi mano completa (5 dedos extendidos)"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ el gesto ahora. Repítelo 3 veces.
+                    </div>
+                </div>
+                
+                <!-- NÚMERO 3 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">3</span>
+                        <span class="gesture-title">NÚMERO: 8</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU NÚMERO:</strong> <span>8</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para el número 8:</label>
+                    <textarea class="input-area" id="numero3" placeholder="Ejemplo: Hago el símbolo de infinito con mi dedo (8 de lado)"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ el gesto ahora. Repítelo 3 veces.
+                    </div>
+                </div>
+                
+                <!-- NÚMERO 4 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">4</span>
+                        <span class="gesture-title">NÚMERO: 1</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU NÚMERO:</strong> <span>1</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para el número 1:</label>
+                    <textarea class="input-area" id="numero4" placeholder="Ejemplo: Levanto mi dedo índice apuntando hacia arriba"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ el gesto ahora. Repítelo 3 veces.
+                    </div>
+                </div>
+                
+                <!-- NÚMERO 5 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">5</span>
+                        <span class="gesture-title">NÚMERO: 9</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU NÚMERO:</strong> <span>9</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para el número 9:</label>
+                    <textarea class="input-area" id="numero5" placeholder="Ejemplo: Hago un círculo con el dedo y bajo como si fuera un globo"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ el gesto ahora. Repítelo 3 veces.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 2: PALABRAS -->
+            <div class="section">
+                <div class="section-title">
+                    💬 PARTE 2: CREA GESTOS PARA 5 PALABRAS
+                </div>
+                
+                <div class="example-box">
+                    <strong>💡 EJEMPLO:</strong><br>
+                    <strong>TELÉFONO:</strong> Hago el gesto de llamar (mano en la oreja)<br>
+                    <strong>ÁRBOL:</strong> Levanto los brazos como ramas<br>
+                    <strong>GRANDE:</strong> Abro los brazos bien abiertos
+                </div>
+                
+                <!-- PALABRA 1 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">6</span>
+                        <span class="gesture-title">PALABRA: COMER</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU PALABRA:</strong> <span>COMER</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para "COMER":</label>
+                    <textarea class="input-area" id="palabra1" placeholder="Ejemplo: Hago el gesto de llevar comida a mi boca con la mano"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ el gesto mientras dices "COMER". Repítelo 3 veces.
+                    </div>
+                </div>
+                
+                <!-- PALABRA 2 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">7</span>
+                        <span class="gesture-title">PALABRA: DORMIR</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU PALABRA:</strong> <span>DORMIR</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para "DORMIR":</label>
+                    <textarea class="input-area" id="palabra2" placeholder="Ejemplo: Junto mis manos y las pongo al lado de mi cara como almohada"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ el gesto mientras dices "DORMIR". Repítelo 3 veces.
+                    </div>
+                </div>
+                
+                <!-- PALABRA 3 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">8</span>
+                        <span class="gesture-title">PALABRA: CAMINAR</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU PALABRA:</strong> <span>CAMINAR</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para "CAMINAR":</label>
+                    <textarea class="input-area" id="palabra3" placeholder="Ejemplo: Muevo mis dedos índice y medio como si fueran piernas caminando"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ el gesto mientras dices "CAMINAR". Repítelo 3 veces.
+                    </div>
+                </div>
+                
+                <!-- PALABRA 4 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">9</span>
+                        <span class="gesture-title">PALABRA: CASA</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU PALABRA:</strong> <span>CASA</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para "CASA":</label>
+                    <textarea class="input-area" id="palabra4" placeholder="Ejemplo: Junto mis manos en forma de techo triangular"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ el gesto mientras dices "CASA". Repítelo 3 veces.
+                    </div>
+                </div>
+                
+                <!-- PALABRA 5 -->
+                <div class="gesture-item">
+                    <div class="gesture-header">
+                        <span class="gesture-number">10</span>
+                        <span class="gesture-title">PALABRA: AGUA</span>
+                    </div>
+                    
+                    <div class="data-display">
+                        <strong>🎯 TU PALABRA:</strong> <span>AGUA</span>
+                    </div>
+                    
+                    <label class="label">✏️ Describe tu micro-gesto para "AGUA":</label>
+                    <textarea class="input-area" id="palabra5" placeholder="Ejemplo: Hago el gesto de beber de un vaso"></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ el gesto mientras dices "AGUA". Repítelo 3 veces.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TEST FINAL -->
+            <div class="section">
+                <div class="section-title">
+                    ✅ TEST FINAL: RECUERDA LOS 10
+                </div>
+                
+                <div style="background: #fff3e0; border: 2px solid #ff9800; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: #e65100; margin-bottom: 15px;">🧠 Prueba tu memoria muscular:</h3>
+                    <p style="color: #555; margin-bottom: 15px;">Sin mirar tus respuestas anteriores, HAZ cada gesto físicamente y escribe qué número o palabra representa:</p>
+                    
+                    <label class="label">📝 Haz tus 10 gestos uno por uno y escribe qué representan:</label>
+                    <textarea class="input-area" id="test_final" style="min-height: 180px;" placeholder="Gesto 1: (haz el gesto) = ...
+Gesto 2: (haz el gesto) = ...
+Gesto 3: (haz el gesto) = ...
+(continúa hasta el 10)"></textarea>
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                <h2>🎉 ¡EXCELENTE TRABAJO!</h2>
+                <p>Has entrenado tu <strong>MEMORIA MUSCULAR</strong>.</p>
+                <p>Tu cuerpo ahora "sabe" estos 10 datos. Los gestos están grabados en tu córtex motor.</p>
+                <p><strong>RECUERDA:</strong> Combina gestos con LOCALIZAR (Día 5) para máxima efectividad.</p>
+                <p><strong>MAÑANA:</strong> Día 7 - O de OBSERVAR<br>El último paso del S.A.L.T.O. El sistema de repaso que hace que todo se quede para siempre.</p>
+            </div>
+            
+            <div class="save-notice">
+                💾 Tus respuestas se guardan automáticamente en tu navegador
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-guardar respuestas en localStorage
+        const textareas = document.querySelectorAll('.input-area');
+        
+        // Cargar respuestas guardadas
+        textareas.forEach(textarea => {
+            const savedValue = localStorage.getItem(textarea.id);
+            if (savedValue) {
+                textarea.value = savedValue;
+            }
+            
+            // Guardar al escribir
+            textarea.addEventListener('input', function() {
+                localStorage.setItem(this.id, this.value);
+            });
+        });
+        
+        // Mensaje de confirmación al salir si hay cambios sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            const hasContent = Array.from(textareas).some(ta => ta.value.trim() !== '');
+            if (hasContent) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

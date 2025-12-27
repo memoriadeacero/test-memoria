@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2 - Día 8: Tu Primer Reto Completo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .module {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .instruction {
+            background: #e3f2fd;
+            border-left: 5px solid #1565c0;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .instruction h2 {
+            color: #1565c0;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .challenge-banner {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 3px solid #ffc107;
+        }
+        
+        .challenge-banner h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .step-icon {
+            font-size: 24px;
+        }
+        
+        .word-list {
+            background: #fff3e0;
+            border: 3px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .word-list h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .words-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .word-item {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+            border: 2px solid #ffb74d;
+        }
+        
+        .step-box {
+            background: #f5f5f5;
+            border: 2px solid #2a5298;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .step-box h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .label {
+            display: block;
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .input-area {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        .input-area:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            margin-bottom: 10px;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+        }
+        
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #2e7d32;
+        }
+        
+        .route-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .route-item {
+            background: white;
+            border: 2px solid #64b5f6;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .route-number {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .test-section {
+            background: #fff9c4;
+            border: 3px solid #fbc02d;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .test-section h3 {
+            color: #f57f17;
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .observar-box {
+            background: #f3e5f5;
+            border: 2px solid #8e24aa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .observar-box h4 {
+            color: #6a1b9a;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .observar-box p {
+            color: #666;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .conclusion h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .save-notice {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .save-notice {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .words-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .route-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="module">MÓDULO 2 - S.A.L.T.O. EN ACCIÓN</div>
+            <h1>🧠 MEMORIA DE ACERO</h1>
+            <p>DÍA 8: EJERCICIO - TU PRIMER RETO COMPLETO</p>
+        </div>
+        
+        <div class="content">
+            <div class="instruction">
+                <h2>🎯 BIENVENIDO AL MÓDULO 2</h2>
+                <p>Completaste el Módulo 1 y ahora conoces los 5 pasos del S.A.L.T.O. por separado.</p>
+                <p>Hoy vas a <strong>INTEGRARLOS TODOS</strong> en un solo ejercicio real.</p>
+                <p><strong>Tu misión:</strong> Memorizar 20 palabras completamente nuevas usando el sistema S.A.L.T.O. completo.</p>
+                <p><strong>Tiempo estimado:</strong> 15-20 minutos</p>
+            </div>
+            
+            <div class="challenge-banner">
+                <h2>🏆 TU RETO DE HOY</h2>
+                <p style="font-size: 18px; font-weight: 600;">Memoriza estas 20 palabras NUEVAS (diferentes a las del video)</p>
+            </div>
+            
+            <!-- LISTA DE 20 PALABRAS NUEVAS -->
+            <div class="word-list">
+                <h3>📝 TU LISTA DE 20 PALABRAS:</h3>
+                <div class="words-grid">
+                    <div class="word-item">Delfín</div>
+                    <div class="word-item">Tambor</div>
+                    <div class="word-item">Volcán</div>
+                    <div class="word-item">Laptop</div>
+                    <div class="word-item">Naranja</div>
+                    <div class="word-item">Helicóptero</div>
+                    <div class="word-item">Revista</div>
+                    <div class="word-item">Brújula</div>
+                    <div class="word-item">Bufanda</div>
+                    <div class="word-item">Candado</div>
+                    <div class="word-item">Faro</div>
+                    <div class="word-item">Sol</div>
+                    <div class="word-item">Chocolate</div>
+                    <div class="word-item">Patineta</div>
+                    <div class="word-item">Espejo</div>
+                    <div class="word-item">Pingüino</div>
+                    <div class="word-item">Violín</div>
+                    <div class="word-item">Arcoíris</div>
+                    <div class="word-item">Calcetín</div>
+                    <div class="word-item">Cometa</div>
+                </div>
+            </div>
+            
+            <!-- PASO 1: SEGMENTAR -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="step-icon">✂️</span>
+                    PASO 1: SEGMENTAR (Divide en 4 grupos de 5)
+                </div>
+                
+                <div class="step-box">
+                    <h3>S de SEGMENTAR</h3>
+                    <p style="color: #555; margin-bottom: 15px;">Divide las 20 palabras en 4 grupos lógicos de 5 elementos cada uno. Puedes agrupar por categorías (animales, objetos, naturaleza, etc.) o como prefieras:</p>
+                    
+                    <label class="label">🗂️ GRUPO 1 (5 palabras):</label>
+                    <textarea class="input-area" id="grupo1" placeholder="Ejemplo: Delfín, Tambor, Pingüino, Violín, Helicóptero (animales + instrumentos + vehículos)"></textarea>
+                    
+                    <label class="label">🗂️ GRUPO 2 (5 palabras):</label>
+                    <textarea class="input-area" id="grupo2" placeholder="Escribe tu segundo grupo de 5 palabras..."></textarea>
+                    
+                    <label class="label">🗂️ GRUPO 3 (5 palabras):</label>
+                    <textarea class="input-area" id="grupo3" placeholder="Escribe tu tercer grupo de 5 palabras..."></textarea>
+                    
+                    <label class="label">🗂️ GRUPO 4 (5 palabras):</label>
+                    <textarea class="input-area" id="grupo4" placeholder="Escribe tu cuarto grupo de 5 palabras..."></textarea>
+                </div>
+            </div>
+            
+            <!-- PASO 2: ASOCIAR -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="step-icon">🎨</span>
+                    PASO 2: ASOCIAR (Crea 4 historias absurdas)
+                </div>
+                
+                <div class="step-box">
+                    <h3>A de ASOCIAR (Absurdo)</h3>
+                    <p style="color: #555; margin-bottom: 15px;">Para cada grupo, crea UNA historia ridícula, exagerada e imposible que conecte las 5 palabras:</p>
+                    
+                    <div class="tip-box">
+                        💡 <strong>EJEMPLO:</strong><br>
+                        <strong>Grupo (Delfín, Tambor, Pingüino, Violín, Helicóptero):</strong><br>
+                        "Un DELFÍN gigante está tocando un TAMBOR mientras un PINGÜINO con smoking toca el VIOLÍN montado en un HELICÓPTERO de juguete que dispara confeti."
+                    </div>
+                    
+                    <label class="label">📖 HISTORIA 1 (para tu Grupo 1):</label>
+                    <textarea class="input-area" id="historia1" style="min-height: 110px;" placeholder="Crea una historia absurda que conecte las 5 palabras de tu Grupo 1..."></textarea>
+                    
+                    <label class="label">📖 HISTORIA 2 (para tu Grupo 2):</label>
+                    <textarea class="input-area" id="historia2" style="min-height: 110px;" placeholder="Crea una historia absurda que conecte las 5 palabras de tu Grupo 2..."></textarea>
+                    
+                    <label class="label">📖 HISTORIA 3 (para tu Grupo 3):</label>
+                    <textarea class="input-area" id="historia3" style="min-height: 110px;" placeholder="Crea una historia absurda que conecte las 5 palabras de tu Grupo 3..."></textarea>
+                    
+                    <label class="label">📖 HISTORIA 4 (para tu Grupo 4):</label>
+                    <textarea class="input-area" id="historia4" style="min-height: 110px;" placeholder="Crea una historia absurda que conecte las 5 palabras de tu Grupo 4..."></textarea>
+                </div>
+            </div>
+            
+            <!-- PASO 3: LOCALIZAR -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="step-icon">📍</span>
+                    PASO 3: LOCALIZAR (Coloca en tu ruta)
+                </div>
+                
+                <div class="step-box">
+                    <h3>L de LOCALIZAR</h3>
+                    <p style="color: #555; margin-bottom: 15px;">Usa los primeros 4 lugares de tu Ruta Diaria Sagrada (del Día 5). Coloca cada historia en un lugar diferente:</p>
+                    
+                    <div class="route-grid">
+                        <div class="route-item">
+                            <div class="route-number">1</div>
+                            <label class="label">Lugar 1 de tu ruta:</label>
+                            <input type="text" class="input-field" id="lugar1" placeholder="Ej: Puerta de entrada">
+                            <label class="label">Historia que colocas aquí:</label>
+                            <textarea class="input-area" id="ubicacion1" style="min-height: 70px;" placeholder="Describe qué ves en este lugar con tu Historia 1..."></textarea>
+                        </div>
+                        
+                        <div class="route-item">
+                            <div class="route-number">2</div>
+                            <label class="label">Lugar 2 de tu ruta:</label>
+                            <input type="text" class="input-field" id="lugar2" placeholder="Ej: Sofá">
+                            <label class="label">Historia que colocas aquí:</label>
+                            <textarea class="input-area" id="ubicacion2" style="min-height: 70px;" placeholder="Describe qué ves en este lugar con tu Historia 2..."></textarea>
+                        </div>
+                        
+                        <div class="route-item">
+                            <div class="route-number">3</div>
+                            <label class="label">Lugar 3 de tu ruta:</label>
+                            <input type="text" class="input-field" id="lugar3" placeholder="Ej: Mesa">
+                            <label class="label">Historia que colocas aquí:</label>
+                            <textarea class="input-area" id="ubicacion3" style="min-height: 70px;" placeholder="Describe qué ves en este lugar con tu Historia 3..."></textarea>
+                        </div>
+                        
+                        <div class="route-item">
+                            <div class="route-number">4</div>
+                            <label class="label">Lugar 4 de tu ruta:</label>
+                            <input type="text" class="input-field" id="lugar4" placeholder="Ej: Cama">
+                            <label class="label">Historia que colocas aquí:</label>
+                            <textarea class="input-area" id="ubicacion4" style="min-height: 70px;" placeholder="Describe qué ves en este lugar con tu Historia 4..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASO 4: TRANSFORMAR -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="step-icon">✋</span>
+                    PASO 4: TRANSFORMAR (Crea 4 micro-gestos)
+                </div>
+                
+                <div class="step-box">
+                    <h3>T de TRANSFORMAR</h3>
+                    <p style="color: #555; margin-bottom: 15px;">Crea un micro-gesto único (1-2 segundos) para cada historia:</p>
+                    
+                    <div class="tip-box">
+                        💡 <strong>EJEMPLO:</strong> Para Historia 1 (Delfín/Tambor): "Simulo nadar como delfín mientras toco un tambor invisible"
+                    </div>
+                    
+                    <label class="label">✋ GESTO 1 (para Historia 1):</label>
+                    <textarea class="input-area" id="gesto1" style="min-height: 70px;" placeholder="Describe tu gesto físico para representar tu Historia 1..."></textarea>
+                    
+                    <label class="label">✋ GESTO 2 (para Historia 2):</label>
+                    <textarea class="input-area" id="gesto2" style="min-height: 70px;" placeholder="Describe tu gesto físico para representar tu Historia 2..."></textarea>
+                    
+                    <label class="label">✋ GESTO 3 (para Historia 3):</label>
+                    <textarea class="input-area" id="gesto3" style="min-height: 70px;" placeholder="Describe tu gesto físico para representar tu Historia 3..."></textarea>
+                    
+                    <label class="label">✋ GESTO 4 (para Historia 4):</label>
+                    <textarea class="input-area" id="gesto4" style="min-height: 70px;" placeholder="Describe tu gesto físico para representar tu Historia 4..."></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ cada gesto AHORA físicamente 3 veces mientras lo escribes.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASO 5: OBSERVAR -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="step-icon">👁️</span>
+                    PASO 5: OBSERVAR (Tu plan de repaso)
+                </div>
+                
+                <div class="step-box">
+                    <h3>O de OBSERVAR</h3>
+                    <p style="color: #555; margin-bottom: 15px;">Escribe cuándo y dónde repasarás estas 20 palabras:</p>
+                    
+                    <div class="observar-box">
+                        <h4>⏰ REPASO 1 (Hoy por la noche):</h4>
+                        <input type="text" class="input-field" id="repaso1" placeholder="Ejemplo: Mientras me lavo los dientes a las 22:00">
+                        <p>Durante esta actividad, "caminarás" mentalmente por tu ruta repasando las 4 historias.</p>
+                    </div>
+                    
+                    <div class="observar-box">
+                        <h4>📅 REPASO 2 (En 7 días desde hoy):</h4>
+                        <input type="text" class="input-field" id="repaso2" placeholder="Ejemplo: Mientras desayuno el próximo sábado">
+                        <p>Este repaso refuerza las conexiones neuronales y consolida la información.</p>
+                    </div>
+                    
+                    <div class="observar-box">
+                        <h4>📆 REPASO 3 (En 30 días desde hoy):</h4>
+                        <input type="text" class="input-field" id="repaso3" placeholder="Ejemplo: Mientras conduzco al trabajo el 27 del próximo mes">
+                        <p>Este es tu repaso final que mueve la información a la memoria permanente.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TEST FINAL -->
+            <div class="test-section">
+                <h3>✅ TEST FINAL: ¿CUÁNTAS RECUERDAS?</h3>
+                <p style="color: #555; text-align: center; margin-bottom: 20px;"><strong>Sin mirar la lista original</strong>, "camina" mentalmente por tu ruta y escribe las 20 palabras:</p>
+                
+                <label class="label">📝 Escribe las 20 palabras EN ORDEN (por grupo/lugar):</label>
+                <textarea class="input-area" id="test_final" style="min-height: 200px;" placeholder="Lugar 1: ...
+Lugar 2: ...
+Lugar 3: ...
+Lugar 4: ...
+
+¿Cuántas de 20 recordaste? ___/20"></textarea>
+                
+                <div class="tip-box">
+                    🎯 <strong>EVALUACIÓN:</strong><br>
+                    • 16-20 palabras: ¡Excelente! El S.A.L.T.O. completo funciona<br>
+                    • 12-15 palabras: Bien. Practica más las visualizaciones<br>
+                    • 8-11 palabras: Regular. Revisa cada paso con más detalle<br>
+                    • Menos de 8: Repasa los 5 pasos del Módulo 1
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                <h2>🎉 ¡FELICIDADES!</h2>
+                <p>Has completado tu <strong>PRIMER RETO S.A.L.T.O. COMPLETO</strong>.</p>
+                <p>Ahora sabes integrar los 5 pasos para memorizar listas largas en minutos.</p>
+                <p><strong>Los 5 pasos que usaste:</strong></p>
+                <p style="font-size: 18px; margin: 15px 0;">
+                    ✅ S - SEGMENTAR<br>
+                    ✅ A - ASOCIAR<br>
+                    ✅ L - LOCALIZAR<br>
+                    ✅ T - TRANSFORMAR<br>
+                    ✅ O - OBSERVAR
+                </p>
+                <p><strong>MAÑANA:</strong> Día 9 - Nombres y Caras (Parte 1)<br>Nunca más olvidarás el nombre de alguien que acabas de conocer.</p>
+            </div>
+            
+            <div class="save-notice">
+                💾 Tus respuestas se guardan automáticamente en tu navegador
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-guardar respuestas en localStorage
+        const inputs = document.querySelectorAll('.input-field, .input-area');
+        
+        // Cargar respuestas guardadas
+        inputs.forEach(input => {
+            const savedValue = localStorage.getItem(input.id);
+            if (savedValue) {
+                input.value = savedValue;
+            }
+            
+            // Guardar al escribir
+            input.addEventListener('input', function() {
+                localStorage.setItem(this.id, this.value);
+            });
+        });
+        
+        // Mensaje de confirmación al salir si hay cambios sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            const hasContent = Array.from(inputs).some(input => input.value.trim() !== '');
+            if (hasContent) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

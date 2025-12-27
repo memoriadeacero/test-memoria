@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día 7: Test de Evaluación Semana 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .instruction {
+            background: #ffebee;
+            border-left: 5px solid #c62828;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .instruction h2 {
+            color: #c62828;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .challenge-box {
+            background: #fff8e1;
+            border: 3px solid #f57c00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .challenge-box h3 {
+            color: #e65100;
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .data-list {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #ffab91;
+        }
+        
+        .data-list strong {
+            color: #c62828;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .data-list ol, .data-list ul {
+            margin-left: 20px;
+            color: #333;
+        }
+        
+        .data-list li {
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        
+        .label {
+            display: block;
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .input-area {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        .input-area:focus {
+            outline: none;
+            border-color: #eb3349;
+            box-shadow: 0 0 0 3px rgba(235, 51, 73, 0.1);
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            margin-bottom: 10px;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #eb3349;
+            box-shadow: 0 0 0 3px rgba(235, 51, 73, 0.1);
+        }
+        
+        .tip-box {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #01579b;
+        }
+        
+        .anchors-section {
+            background: #f3e5f5;
+            border: 2px solid #8e24aa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .anchors-section h3 {
+            color: #6a1b9a;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .anchor-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ab47bc;
+        }
+        
+        .anchor-item strong {
+            color: #6a1b9a;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .conclusion h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .celebration {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+        
+        .save-notice {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .save-notice {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 MEMORIA DE ACERO</h1>
+            <p>DÍA 7: TEST DE EVALUACIÓN SEMANA 1</p>
+        </div>
+        
+        <div class="content">
+            <div class="instruction">
+                <h2>🎯 ¡LLEGASTE AL FINAL DEL MÓDULO 1!</h2>
+                <p>Hoy vas a <strong>REPASAR Y EVALUAR</strong> todo lo que aprendiste esta semana.</p>
+                <p>Este ejercicio integra los 5 pasos del S.A.L.T.O.:</p>
+                <ul style="margin-left: 20px; color: #555;">
+                    <li><strong>S</strong> de SEGMENTAR</li>
+                    <li><strong>A</strong> de ASOCIAR</li>
+                    <li><strong>L</strong> de LOCALIZAR</li>
+                    <li><strong>T</strong> de TRANSFORMAR</li>
+                    <li><strong>O</strong> de OBSERVAR</li>
+                </ul>
+                <p><strong>Tiempo estimado:</strong> 15-20 minutos</p>
+            </div>
+            
+            <!-- DESAFÍO INTEGRADOR -->
+            <div class="section">
+                <div class="section-title">
+                    🎯 DESAFÍO INTEGRADOR: MEMORIZA UNA LISTA DE INVITADOS
+                </div>
+                
+                <div class="challenge-box">
+                    <h3>
+                        <span class="step-number">📋</span>
+                        TU MISIÓN
+                    </h3>
+                    <p style="color: #555; margin-bottom: 15px;">Imagina que vas a organizar una cena y necesitas memorizar esta información sobre tus invitados:</p>
+                    
+                    <div class="data-list">
+                        <strong>🎉 LISTA DE 12 INVITADOS CON DETALLES:</strong>
+                        <ol>
+                            <li><strong>Roberto García</strong> - Vegetariano - Mesa 1</li>
+                            <li><strong>Sandra Morales</strong> - Alérgica a mariscos - Mesa 1</li>
+                            <li><strong>Fernando López</strong> - Diabético - Mesa 1</li>
+                            <li><strong>Patricia Ruiz</strong> - Sin restricciones - Mesa 2</li>
+                            <li><strong>Alberto Campos</strong> - Intolerante a lactosa - Mesa 2</li>
+                            <li><strong>Claudia Vargas</strong> - Vegana - Mesa 2</li>
+                            <li><strong>Rodrigo Mendoza</strong> - Alérgico a nueces - Mesa 3</li>
+                            <li><strong>Gabriela Torres</strong> - Celíaca (sin gluten) - Mesa 3</li>
+                            <li><strong>Sebastián Ortiz</strong> - Sin restricciones - Mesa 3</li>
+                            <li><strong>Valentina Castro</strong> - Vegetariana - Mesa 4</li>
+                            <li><strong>Nicolás Jiménez</strong> - Alérgico a lácteos - Mesa 4</li>
+                            <li><strong>Camila Rojas</strong> - Sin restricciones - Mesa 4</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="tip-box">
+                        💡 <strong>ESTRATEGIA SUGERIDA:</strong><br>
+                        • Segmenta en 4 grupos (por mesa)<br>
+                        • Asocia nombres con imágenes absurdas<br>
+                        • Localiza cada mesa en un lugar de tu ruta<br>
+                        • Crea micro-gestos para las restricciones
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASO 1: SEGMENTAR -->
+            <div class="section">
+                <div class="section-title">
+                    ✂️ PASO 1: SEGMENTAR (Divide en grupos)
+                </div>
+                
+                <div class="challenge-box">
+                    <h3>
+                        <span class="step-number">S</span>
+                        Agrupa los 12 invitados
+                    </h3>
+                    <p style="color: #555; margin-bottom: 15px;">Ya están divididos en 4 mesas de 3 personas cada una. Escribe cómo los agruparías mentalmente:</p>
+                    
+                    <label class="label">✏️ MESA 1 (3 personas):</label>
+                    <textarea class="input-area" id="segmentar1" placeholder="Ejemplo: Roberto (vegetariano), Sandra (mariscos), Fernando (diabético)"></textarea>
+                    
+                    <label class="label">✏️ MESA 2 (3 personas):</label>
+                    <textarea class="input-area" id="segmentar2" placeholder="Escribe los 3 nombres y sus restricciones..."></textarea>
+                    
+                    <label class="label">✏️ MESA 3 (3 personas):</label>
+                    <textarea class="input-area" id="segmentar3" placeholder="Escribe los 3 nombres y sus restricciones..."></textarea>
+                    
+                    <label class="label">✏️ MESA 4 (3 personas):</label>
+                    <textarea class="input-area" id="segmentar4" placeholder="Escribe los 3 nombres y sus restricciones..."></textarea>
+                </div>
+            </div>
+            
+            <!-- PASO 2: ASOCIAR -->
+            <div class="section">
+                <div class="section-title">
+                    🎨 PASO 2: ASOCIAR (Crea imágenes absurdas)
+                </div>
+                
+                <div class="challenge-box">
+                    <h3>
+                        <span class="step-number">A</span>
+                        Crea asociaciones absurdas para 4 personas
+                    </h3>
+                    <p style="color: #555; margin-bottom: 15px;">Elige 4 personas de la lista y crea una imagen absurda para recordar su nombre + restricción:</p>
+                    
+                    <div class="tip-box">
+                        💡 <strong>EJEMPLO:</strong><br>
+                        <strong>Roberto García (vegetariano):</strong> "Un ROBOT gigante (Roberto) comiendo ZANAHORIAS gigantes en un jardín mientras dice '¡Solo verduras!'"
+                    </div>
+                    
+                    <label class="label">1️⃣ Persona 1 - Imagen absurda:</label>
+                    <textarea class="input-area" id="asociar1" placeholder="Nombre + restricción + imagen ridícula..."></textarea>
+                    
+                    <label class="label">2️⃣ Persona 2 - Imagen absurda:</label>
+                    <textarea class="input-area" id="asociar2" placeholder="Nombre + restricción + imagen ridícula..."></textarea>
+                    
+                    <label class="label">3️⃣ Persona 3 - Imagen absurda:</label>
+                    <textarea class="input-area" id="asociar3" placeholder="Nombre + restricción + imagen ridícula..."></textarea>
+                    
+                    <label class="label">4️⃣ Persona 4 - Imagen absurda:</label>
+                    <textarea class="input-area" id="asociar4" placeholder="Nombre + restricción + imagen ridícula..."></textarea>
+                </div>
+            </div>
+            
+            <!-- PASO 3: LOCALIZAR -->
+            <div class="section">
+                <div class="section-title">
+                    📍 PASO 3: LOCALIZAR (Coloca en tu ruta)
+                </div>
+                
+                <div class="challenge-box">
+                    <h3>
+                        <span class="step-number">L</span>
+                        Asigna cada mesa a un lugar de tu ruta
+                    </h3>
+                    <p style="color: #555; margin-bottom: 15px;">Usa 4 lugares de tu Ruta Diaria Sagrada del Día 5. Coloca cada mesa en un lugar diferente:</p>
+                    
+                    <label class="label">🏠 Lugar 1 de tu ruta → MESA 1:</label>
+                    <input type="text" class="input-field" id="localizar1" placeholder="Ejemplo: En mi puerta de entrada veo a Roberto, Sandra y Fernando">
+                    
+                    <label class="label">🏠 Lugar 2 de tu ruta → MESA 2:</label>
+                    <input type="text" class="input-field" id="localizar2" placeholder="¿En qué lugar de tu casa colocas la Mesa 2?">
+                    
+                    <label class="label">🏠 Lugar 3 de tu ruta → MESA 3:</label>
+                    <input type="text" class="input-field" id="localizar3" placeholder="¿En qué lugar de tu casa colocas la Mesa 3?">
+                    
+                    <label class="label">🏠 Lugar 4 de tu ruta → MESA 4:</label>
+                    <input type="text" class="input-field" id="localizar4" placeholder="¿En qué lugar de tu casa colocas la Mesa 4?">
+                    
+                    <div class="tip-box">
+                        💡 Ahora "camina" mentalmente por tu ruta. ¿Puedes recordar quién está en cada mesa?
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASO 4: TRANSFORMAR -->
+            <div class="section">
+                <div class="section-title">
+                    ✋ PASO 4: TRANSFORMAR (Crea micro-gestos)
+                </div>
+                
+                <div class="challenge-box">
+                    <h3>
+                        <span class="step-number">T</span>
+                        Crea gestos para las restricciones
+                    </h3>
+                    <p style="color: #555; margin-bottom: 15px;">Crea un micro-gesto único para cada tipo de restricción alimentaria:</p>
+                    
+                    <label class="label">🥗 VEGETARIANO - Tu gesto:</label>
+                    <textarea class="input-area" id="transformar1" style="min-height: 60px;" placeholder="Ejemplo: Hago el gesto de comer una zanahoria"></textarea>
+                    
+                    <label class="label">🦐 ALÉRGICO A MARISCOS - Tu gesto:</label>
+                    <textarea class="input-area" id="transformar2" style="min-height: 60px;" placeholder="Describe tu gesto..."></textarea>
+                    
+                    <label class="label">🍬 DIABÉTICO - Tu gesto:</label>
+                    <textarea class="input-area" id="transformar3" style="min-height: 60px;" placeholder="Describe tu gesto..."></textarea>
+                    
+                    <label class="label">🥛 INTOLERANTE A LACTOSA - Tu gesto:</label>
+                    <textarea class="input-area" id="transformar4" style="min-height: 60px;" placeholder="Describe tu gesto..."></textarea>
+                    
+                    <div class="tip-box">
+                        💡 HAZ cada gesto físicamente 3 veces mientras lo escribes.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASO 5: OBSERVAR -->
+            <div class="section">
+                <div class="section-title">
+                    👁️ PASO 5: OBSERVAR (Sistema 3-7-30)
+                </div>
+                
+                <div class="anchors-section">
+                    <h3>🔗 ELIGE TUS 3 ANCLAS DE REPASO</h3>
+                    <p style="color: #555; margin-bottom: 15px;">Escribe las actividades diarias que usarás para repasar esta lista en los próximos 30 días:</p>
+                    
+                    <div class="anchor-item">
+                        <strong>⏰ ANCLA 1 (HOY POR LA NOCHE):</strong>
+                        <label class="label">¿Qué harás hoy antes de dormir?</label>
+                        <input type="text" class="input-field" id="ancla1" placeholder="Ejemplo: Mientras me lavo los dientes">
+                        <p style="color: #666; font-size: 13px; margin-top: 5px;">Durante esta actividad, repasarás mentalmente la lista de invitados.</p>
+                    </div>
+                    
+                    <div class="anchor-item">
+                        <strong>📅 ANCLA 2 (DENTRO DE 7 DÍAS):</strong>
+                        <label class="label">¿Qué harás la próxima semana en el mismo día?</label>
+                        <input type="text" class="input-field" id="ancla2" placeholder="Ejemplo: Mientras desayuno el domingo">
+                        <p style="color: #666; font-size: 13px; margin-top: 5px;">Durante esta actividad, repasarás nuevamente la lista.</p>
+                    </div>
+                    
+                    <div class="anchor-item">
+                        <strong>📆 ANCLA 3 (DENTRO DE 30 DÍAS):</strong>
+                        <label class="label">¿Qué harás el próximo mes?</label>
+                        <input type="text" class="input-field" id="ancla3" placeholder="Ejemplo: Mientras hago ejercicio el 1 de cada mes">
+                        <p style="color: #666; font-size: 13px; margin-top: 5px;">Este será tu repaso final para consolidar la memoria permanente.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TEST FINAL -->
+            <div class="section">
+                <div class="section-title">
+                    ✅ TEST FINAL: ¿CUÁNTO RECUERDAS?
+                </div>
+                
+                <div class="challenge-box">
+                    <h3>
+                        <span class="step-number">🧠</span>
+                        Sin mirar la lista, responde:
+                    </h3>
+                    
+                    <label class="label">1️⃣ Escribe los nombres de las 3 personas en MESA 1:</label>
+                    <textarea class="input-area" id="test1" style="min-height: 70px;" placeholder="Nombres + restricciones..."></textarea>
+                    
+                    <label class="label">2️⃣ ¿Quién es alérgico/a a nueces? (nombre completo):</label>
+                    <input type="text" class="input-field" id="test2" placeholder="Escribe el nombre...">
+                    
+                    <label class="label">3️⃣ ¿Quién es celíaco/a? (nombre completo):</label>
+                    <input type="text" class="input-field" id="test3" placeholder="Escribe el nombre...">
+                    
+                    <label class="label">4️⃣ ¿Cuántas personas vegetarianas hay en total?:</label>
+                    <input type="text" class="input-field" id="test4" placeholder="Número...">
+                    
+                    <label class="label">5️⃣ Escribe los 4 lugares de tu ruta donde colocaste cada mesa:</label>
+                    <textarea class="input-area" id="test5" style="min-height: 100px;" placeholder="Lugar 1: ...
+Lugar 2: ...
+Lugar 3: ...
+Lugar 4: ..."></textarea>
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                <div class="celebration">🎉🏆🎉</div>
+                <h2>¡FELICIDADES!</h2>
+                <h2>MÓDULO 1 COMPLETADO</h2>
+                <p>Has dominado los <strong>5 PASOS DEL S.A.L.T.O.</strong></p>
+                <p style="font-size: 18px; margin: 20px 0;">
+                    ✅ <strong>S</strong> de SEGMENTAR<br>
+                    ✅ <strong>A</strong> de ASOCIAR<br>
+                    ✅ <strong>L</strong> de LOCALIZAR<br>
+                    ✅ <strong>T</strong> de TRANSFORMAR<br>
+                    ✅ <strong>O</strong> de OBSERVAR
+                </p>
+                <p><strong>A partir del Día 8:</strong> Módulo 2 - S.A.L.T.O. en Acción</p>
+                <p>Aplicarás el sistema completo a situaciones reales: nombres, números, idiomas, exámenes y más.</p>
+                <div style="margin-top: 20px; font-size: 20px;">🚀 ¡Nos vemos en el Día 8!</div>
+            </div>
+            
+            <div class="save-notice">
+                💾 Tus respuestas se guardan automáticamente en tu navegador
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-guardar respuestas en localStorage
+        const inputs = document.querySelectorAll('.input-field, .input-area');
+        
+        // Cargar respuestas guardadas
+        inputs.forEach(input => {
+            const savedValue = localStorage.getItem(input.id);
+            if (savedValue) {
+                input.value = savedValue;
+            }
+            
+            // Guardar al escribir
+            input.addEventListener('input', function() {
+                localStorage.setItem(this.id, this.value);
+            });
+        });
+        
+        // Mensaje de confirmación al salir si hay cambios sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            const hasContent = Array.from(inputs).some(input => input.value.trim() !== '');
+            if (hasContent) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

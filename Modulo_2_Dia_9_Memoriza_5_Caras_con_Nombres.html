@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2 - Día 9: Memoriza 5 Caras con Nombres</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .module {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .instruction {
+            background: #e8eaf6;
+            border-left: 5px solid #5c6bc0;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .instruction h2 {
+            color: #3949ab;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .instruction p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .technique-box {
+            background: #fff3e0;
+            border: 3px solid #ff9800;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .technique-box h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .technique-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #ffb74d;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .step-card h4 {
+            color: #e65100;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .step-card p {
+            color: #666;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .example-section {
+            background: #e8f5e9;
+            border: 3px solid #4caf50;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .example-section h3 {
+            color: #2e7d32;
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .example-card {
+            background: white;
+            border: 2px solid #81c784;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        
+        .example-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .example-photo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+        
+        .example-info {
+            flex: 1;
+        }
+        
+        .example-name {
+            font-size: 24px;
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .example-details {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .example-step {
+            background: #f1f8f4;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .example-step strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .example-step p {
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .person-card {
+            background: #f5f5f5;
+            border: 3px solid #764ba2;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .person-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .person-photo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+        
+        .person-info {
+            flex: 1;
+        }
+        
+        .person-name {
+            font-size: 28px;
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .person-details {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .label {
+            display: block;
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .input-area {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        .input-area:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+        }
+        
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #2e7d32;
+        }
+        
+        .separator {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .separator::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #764ba2, transparent);
+        }
+        
+        .separator h2 {
+            display: inline-block;
+            background: white;
+            padding: 0 20px;
+            position: relative;
+            color: #764ba2;
+            font-size: 24px;
+        }
+        
+        .test-section {
+            background: #fff9c4;
+            border: 3px solid #fbc02d;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+        
+        .test-section h3 {
+            color: #f57f17;
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .test-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #fbc02d;
+        }
+        
+        .test-photo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        
+        .test-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        
+        .test-input:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .conclusion h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .save-notice {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .save-notice {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .technique-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .person-header, .example-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .test-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="module">MÓDULO 2 - S.A.L.T.O. EN ACCIÓN</div>
+            <h1>🧠 MEMORIA DE ACERO</h1>
+            <p>DÍA 9: EJERCICIO - MEMORIZA 5 CARAS CON NOMBRES</p>
+        </div>
+        
+        <div class="content">
+            <div class="instruction">
+                <h2>👥 NOMBRES Y CARAS - PARTE 1</h2>
+                <p>Hoy aprenderás la <strong>técnica definitiva</strong> para nunca más olvidar el nombre de alguien que acabas de conocer.</p>
+                <p><strong>El problema:</strong> Tu cerebro no considera los nombres importantes (evolucionó para recordar caras, no nombres).</p>
+                <p><strong>La solución:</strong> La técnica de 3 pasos que conecta el nombre con una característica física memorable.</p>
+                <p><strong>Tiempo estimado:</strong> 5-7 minutos</p>
+            </div>
+            
+            <!-- TÉCNICA DE 3 PASOS -->
+            <div class="technique-box">
+                <h3>🎯 LA TÉCNICA DE 3 PASOS (Todo en 10 segundos)</h3>
+                <div class="technique-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>CARACTERÍSTICA</h4>
+                        <p>Identifica UNA característica física única (ojos, cabello, sonrisa, nariz, etc.)</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>ASOCIACIÓN</h4>
+                        <p>Conecta esa característica con el nombre usando asociación absurda o emocional</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>VISUALIZACIÓN</h4>
+                        <p>Visualiza mentalmente esa conexión durante 3 segundos mientras la persona habla</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- EJEMPLO RESUELTO: ROBERTO -->
+            <div class="example-section">
+                <h3>✅ EJEMPLO COMPLETO RESUELTO</h3>
+                <p style="text-align: center; color: #555; margin-bottom: 15px;">
+                    Primero, observa cómo se aplica la técnica paso a paso:
+                </p>
+                
+                <div class="example-card">
+                    <div class="example-header">
+                        <div class="example-photo">👨</div>
+                        <div class="example-info">
+                            <div class="example-name">ROBERTO</div>
+                            <div class="example-details">
+                                📍 Características visibles: Barba roja/pelirroja muy llamativa, ojos marrones, cabello castaño corto<br>
+                                💼 Contexto: Lo conoces en una conferencia
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="example-step">
+                        <strong>🔍 PASO 1 - CARACTERÍSTICA física única:</strong>
+                        <p>Lo primero que notas es su <strong>barba roja muy llamativa</strong>. Esa es la característica que vas a usar.</p>
+                    </div>
+                    
+                    <div class="example-step">
+                        <strong>🎨 PASO 2 - ASOCIACIÓN con el nombre:</strong>
+                        <p><strong>Roberto</strong> suena a <strong>"Robot"</strong>. Entonces creas la conexión: Roberto = Robot rojo (por su barba roja).</p>
+                    </div>
+                    
+                    <div class="example-step">
+                        <strong>👁️ PASO 3 - VISUALIZACIÓN (3 segundos):</strong>
+                        <p>Mientras Roberto habla, visualizas mentalmente: <strong>"Su barba roja se transforma en cables rojos de robot brillantes que parpadean con luces LED."</strong></p>
+                    </div>
+                    
+                    <div class="tip-box" style="margin-top: 15px;">
+                        ✅ <strong>¡LISTO!</strong> Cada vez que veas su barba roja, tu cerebro dirá automáticamente: Barba roja → Robot rojo → Roberto.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SEPARADOR -->
+            <div class="separator">
+                <h2>🎯 AHORA TÚ: MEMORIZA 5 PERSONAS</h2>
+            </div>
+            
+            <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 16px;">
+                Aplica la técnica de 3 pasos a cada persona. <strong>NO hay ejemplos</strong>. Debes resolverlo tú mismo/a.
+            </p>
+            
+            <!-- PERSONA 1: ANDRÉS -->
+            <div class="person-card">
+                <div class="person-header">
+                    <div class="person-photo">👨</div>
+                    <div class="person-info">
+                        <div class="person-name">ANDRÉS</div>
+                        <div class="person-details">
+                            📍 Características visibles: Cabello negro muy corto (casi rapado), cejas pobladas, ojos oscuros, sonrisa amplia<br>
+                            💼 Contexto: Lo conoces en una reunión de trabajo
+                        </div>
+                    </div>
+                </div>
+                
+                <label class="label">🔍 PASO 1 - ¿Qué característica física elegiste?</label>
+                <textarea class="input-area" id="caracteristica1" placeholder="Escribe aquí la característica física única que elegiste..."></textarea>
+                
+                <label class="label">🎨 PASO 2 - ¿Qué asociación creaste con 'ANDRÉS'?</label>
+                <textarea class="input-area" id="asociacion1" placeholder="Escribe aquí tu asociación entre la característica y el nombre ANDRÉS..."></textarea>
+                
+                <label class="label">👁️ PASO 3 - ¿Cómo visualizaste la conexión? (Descríbela vívidamente)</label>
+                <textarea class="input-area" id="visualizacion1" placeholder="Describe aquí la imagen mental que creaste (hazla absurda, exagerada, imposible)..."></textarea>
+            </div>
+            
+            <!-- PERSONA 2: VALERIA -->
+            <div class="person-card">
+                <div class="person-header">
+                    <div class="person-photo">👩</div>
+                    <div class="person-info">
+                        <div class="person-name">VALERIA</div>
+                        <div class="person-details">
+                            📍 Características visibles: Cabello rubio largo y lacio, ojos azules muy claros, usa aretes grandes<br>
+                            💼 Contexto: La conoces en un evento social
+                        </div>
+                    </div>
+                </div>
+                
+                <label class="label">🔍 PASO 1 - ¿Qué característica física elegiste?</label>
+                <textarea class="input-area" id="caracteristica2" placeholder="Escribe aquí la característica física única que elegiste..."></textarea>
+                
+                <label class="label">🎨 PASO 2 - ¿Qué asociación creaste con 'VALERIA'?</label>
+                <textarea class="input-area" id="asociacion2" placeholder="Escribe aquí tu asociación entre la característica y el nombre VALERIA..."></textarea>
+                
+                <label class="label">👁️ PASO 3 - ¿Cómo visualizaste la conexión? (Descríbela vívidamente)</label>
+                <textarea class="input-area" id="visualizacion2" placeholder="Describe aquí la imagen mental que creaste (hazla absurda, exagerada, imposible)..."></textarea>
+            </div>
+            
+            <!-- PERSONA 3: DIEGO -->
+            <div class="person-card">
+                <div class="person-header">
+                    <div class="person-photo">👨</div>
+                    <div class="person-info">
+                        <div class="person-name">DIEGO</div>
+                        <div class="person-details">
+                            📍 Características visibles: Usa lentes de marco grueso negro, barba corta y recortada, cabello castaño ondulado<br>
+                            💼 Contexto: Compañero nuevo de gimnasio
+                        </div>
+                    </div>
+                </div>
+                
+                <label class="label">🔍 PASO 1 - ¿Qué característica física elegiste?</label>
+                <textarea class="input-area" id="caracteristica3" placeholder="Escribe aquí la característica física única que elegiste..."></textarea>
+                
+                <label class="label">🎨 PASO 2 - ¿Qué asociación creaste con 'DIEGO'?</label>
+                <textarea class="input-area" id="asociacion3" placeholder="Escribe aquí tu asociación entre la característica y el nombre DIEGO..."></textarea>
+                
+                <label class="label">👁️ PASO 3 - ¿Cómo visualizaste la conexión? (Descríbela vívidamente)</label>
+                <textarea class="input-area" id="visualizacion3" placeholder="Describe aquí la imagen mental que creaste (hazla absurda, exagerada, imposible)..."></textarea>
+            </div>
+            
+            <!-- PERSONA 4: PATRICIA -->
+            <div class="person-card">
+                <div class="person-header">
+                    <div class="person-photo">👩</div>
+                    <div class="person-info">
+                        <div class="person-name">PATRICIA</div>
+                        <div class="person-details">
+                            📍 Características visibles: Cabello rojo/pelirrojo natural, pecas en la cara, sonrisa tímida<br>
+                            💼 Contexto: Nueva vecina del edificio
+                        </div>
+                    </div>
+                </div>
+                
+                <label class="label">🔍 PASO 1 - ¿Qué característica física elegiste?</label>
+                <textarea class="input-area" id="caracteristica4" placeholder="Escribe aquí la característica física única que elegiste..."></textarea>
+                
+                <label class="label">🎨 PASO 2 - ¿Qué asociación creaste con 'PATRICIA'?</label>
+                <textarea class="input-area" id="asociacion4" placeholder="Escribe aquí tu asociación entre la característica y el nombre PATRICIA..."></textarea>
+                
+                <label class="label">👁️ PASO 3 - ¿Cómo visualizaste la conexión? (Descríbela vívidamente)</label>
+                <textarea class="input-area" id="visualizacion4" placeholder="Describe aquí la imagen mental que creaste (hazla absurda, exagerada, imposible)..."></textarea>
+            </div>
+            
+            <!-- PERSONA 5: FERNANDO -->
+            <div class="person-card">
+                <div class="person-header">
+                    <div class="person-photo">👨</div>
+                    <div class="person-info">
+                        <div class="person-name">FERNANDO</div>
+                        <div class="person-details">
+                            📍 Características visibles: Nariz grande y prominente, bigote fino, cabello gris en las sienes<br>
+                            💼 Contexto: Cliente nuevo en tu negocio
+                        </div>
+                    </div>
+                </div>
+                
+                <label class="label">🔍 PASO 1 - ¿Qué característica física elegiste?</label>
+                <textarea class="input-area" id="caracteristica5" placeholder="Escribe aquí la característica física única que elegiste..."></textarea>
+                
+                <label class="label">🎨 PASO 2 - ¿Qué asociación creaste con 'FERNANDO'?</label>
+                <textarea class="input-area" id="asociacion5" placeholder="Escribe aquí tu asociación entre la característica y el nombre FERNANDO..."></textarea>
+                
+                <label class="label">👁️ PASO 3 - ¿Cómo visualizaste la conexión? (Descríbela vívidamente)</label>
+                <textarea class="input-area" id="visualizacion5" placeholder="Describe aquí la imagen mental que creaste (hazla absurda, exagerada, imposible)..."></textarea>
+            </div>
+            
+            <!-- TEST FINAL -->
+            <div class="test-section">
+                <h3>✅ TEST FINAL: ¿CUÁNTOS NOMBRES RECUERDAS?</h3>
+                <p style="color: #555; text-align: center; margin-bottom: 20px;">
+                    <strong>Cierra este ejercicio y espera 30 minutos.</strong><br>
+                    Luego vuelve aquí, mira solo las fotos (los emojis de caras) y escribe los nombres:
+                </p>
+                
+                <div class="test-grid">
+                    <div class="test-card">
+                        <div class="test-photo">👨</div>
+                        <label class="label" style="font-size: 12px; margin-bottom: 8px;">Nombre:</label>
+                        <input type="text" class="test-input" id="test1" placeholder="¿Recuerdas?">
+                    </div>
+                    
+                    <div class="test-card">
+                        <div class="test-photo">👩</div>
+                        <label class="label" style="font-size: 12px; margin-bottom: 8px;">Nombre:</label>
+                        <input type="text" class="test-input" id="test2" placeholder="¿Recuerdas?">
+                    </div>
+                    
+                    <div class="test-card">
+                        <div class="test-photo">👨</div>
+                        <label class="label" style="font-size: 12px; margin-bottom: 8px;">Nombre:</label>
+                        <input type="text" class="test-input" id="test3" placeholder="¿Recuerdas?">
+                    </div>
+                    
+                    <div class="test-card">
+                        <div class="test-photo">👩</div>
+                        <label class="label" style="font-size: 12px; margin-bottom: 8px;">Nombre:</label>
+                        <input type="text" class="test-input" id="test4" placeholder="¿Recuerdas?">
+                    </div>
+                    
+                    <div class="test-card">
+                        <div class="test-photo">👨</div>
+                        <label class="label" style="font-size: 12px; margin-bottom: 8px;">Nombre:</label>
+                        <input type="text" class="test-input" id="test5" placeholder="¿Recuerdas?">
+                    </div>
+                </div>
+                
+                <div class="tip-box" style="margin-top: 20px;">
+                    🎯 <strong>EVALUACIÓN:</strong><br>
+                    • <strong>4-5 nombres correctos:</strong> ¡Excelente! La técnica funciona para ti.<br>
+                    • <strong>3 nombres correctos:</strong> Bien. Practica más las visualizaciones vívidas.<br>
+                    • <strong>2 o menos:</strong> Revisa tus visualizaciones. Probablemente no fueron lo suficientemente absurdas/exageradas.
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+                    <p style="color: #666; font-size: 14px; margin-bottom: 10px;">
+                        <strong>Respuestas correctas:</strong>
+                    </p>
+                    <p style="color: #764ba2; font-weight: bold; font-size: 16px;">
+                        👨 ANDRÉS | 👩 VALERIA | 👨 DIEGO | 👩 PATRICIA | 👨 FERNANDO
+                    </p>
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                <h2>🎉 ¡FELICIDADES!</h2>
+                <p>Has completado el <strong>EJERCICIO DÍA 9</strong>.</p>
+                <p>Ahora conoces la técnica definitiva para nunca más olvidar nombres.</p>
+                <p><strong>Lo que aprendiste hoy:</strong></p>
+                <p style="font-size: 18px; margin: 15px 0;">
+                    ✅ Por qué tu cerebro olvida nombres<br>
+                    ✅ La técnica de 3 pasos (Característica + Asociación + Visualización)<br>
+                    ✅ Cómo aplicarla en tiempo real (10 segundos)<br>
+                    ✅ Práctica con 5 personas reales
+                </p>
+                <p><strong>MAÑANA:</strong> Día 10 - Nombres y Caras (Parte 2)<br>Aprenderás qué hacer con nombres DIFÍCILES, nombres extranjeros, y cómo recordar nombres + información adicional.</p>
+            </div>
+            
+            <div class="save-notice">
+                💾 Tus respuestas se guardan automáticamente en tu navegador
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-guardar respuestas en localStorage
+        const inputs = document.querySelectorAll('.input-area, .test-input');
+        
+        // Cargar respuestas guardadas
+        inputs.forEach(input => {
+            const savedValue = localStorage.getItem(input.id);
+            if (savedValue) {
+                input.value = savedValue;
+            }
+            
+            // Guardar al escribir
+            input.addEventListener('input', function() {
+                localStorage.setItem(this.id, this.value);
+            });
+        });
+        
+        // Mensaje de confirmación al salir si hay cambios sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            const hasContent = Array.from(inputs).some(input => input.value.trim() !== '');
+            if (hasContent) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

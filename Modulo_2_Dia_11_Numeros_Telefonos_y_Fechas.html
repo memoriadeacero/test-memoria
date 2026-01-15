@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo 2 - Día 11: Números (Parte 1) - Teléfonos y Fechas</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);padding:20px;min-height:100vh}
+    .container{max-width:980px;margin:0 auto;background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
+    .header{background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);color:#fff;padding:40px;text-align:center}
+    .header .module{font-size:14px;opacity:.9;margin-bottom:10px;letter-spacing:1px}
+    .header h1{font-size:32px;margin-bottom:6px;text-shadow:2px 2px 4px rgba(0,0,0,.25)}
+    .header p{font-size:18px;opacity:.95}
+    .content{padding:40px}
+
+    .instruction{background:#e3f2fd;border-left:5px solid #1565c0;padding:20px;margin-bottom:28px;border-radius:10px}
+    .instruction h2{color:#1565c0;font-size:20px;margin-bottom:10px}
+    .instruction p{color:#333;line-height:1.6;font-size:16px;margin-bottom:10px}
+
+    .challenge{background:linear-gradient(135deg,#ffd700 0%,#ffed4e 100%);border:3px solid #ffc107;border-radius:14px;padding:18px;margin:10px 0 28px;text-align:center}
+    .challenge h3{font-size:22px;margin-bottom:6px;color:#333}
+    .challenge p{color:#333;font-weight:600}
+
+    .section{margin-bottom:34px}
+    .section-title{background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);color:#fff;padding:14px 18px;border-radius:12px;font-size:18px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
+    .step-icon{font-size:22px}
+
+    .tip{background:#e8f5e9;border-left:4px solid #4caf50;padding:12px 14px;border-radius:8px;color:#2e7d32;font-size:14px;line-height:1.5;margin:12px 0}
+
+    /* 0-9 table */
+    .digits-wrap{background:#f7fbff;border:2px solid #90caf9;border-radius:14px;padding:18px}
+    .digits-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+    .digits-head h4{color:#0d47a1;font-size:16px}
+    .mini{color:#546e7a;font-size:13px}
+
+    .digit-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .digit-card{border:2px solid #bbdefb;border-radius:12px;padding:12px;background:#fff}
+    .digit-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+    .digit-num{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;background:linear-gradient(135deg,#1565c0,#42a5f5)}
+    .suggest{font-size:12px;color:#1565c0;font-weight:700}
+    .digit-card input{width:100%;padding:10px;border:2px solid #e3f2fd;border-radius:10px;font-size:14px}
+    .digit-card input:focus{outline:none;border-color:#1565c0;box-shadow:0 0 0 3px rgba(21,101,192,.10)}
+
+    /* exercise blocks */
+    .task{background:#f5f5f5;border:2px solid #2c5364;border-radius:14px;padding:18px;margin-bottom:16px}
+    .task h4{color:#0f2027;margin-bottom:10px}
+    .row{display:grid;grid-template-columns:1.2fr 1fr;gap:12px;align-items:start}
+    .pill{display:inline-block;background:#fff;border:2px solid #90caf9;color:#0d47a1;padding:6px 10px;border-radius:999px;font-weight:800;font-size:13px;margin:4px 0 10px}
+
+    .label{display:block;color:#37474f;font-weight:700;margin:8px 0 6px;font-size:13px}
+    textarea{width:100%;min-height:84px;padding:12px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px;resize:vertical}
+    textarea:focus{outline:none;border-color:#2c5364;box-shadow:0 0 0 3px rgba(44,83,100,.12)}
+
+    .split{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .split .box{background:#fff;border:2px solid #cfd8dc;border-radius:12px;padding:10px}
+    .split input{width:100%;padding:10px;border:2px solid #eceff1;border-radius:10px}
+
+    .route{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+    .route .loc{background:#fff;border:2px solid #b0bec5;border-radius:12px;padding:10px}
+    .route .loc strong{color:#0f2027}
+
+    /* dates */
+    .date-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+
+    /* test */
+    .test{background:#fff9c4;border:3px solid #fbc02d;border-radius:14px;padding:20px;margin-top:10px}
+    .test h3{color:#f57f17;text-align:center;margin-bottom:12px}
+    .test p{color:#555;text-align:center;margin-bottom:14px;line-height:1.5}
+    .score{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    .score .card{background:#fff;border:2px solid #fbc02d;border-radius:12px;padding:14px}
+    .score input{width:100%;padding:10px;border:2px solid #eee;border-radius:10px;margin-top:8px}
+
+    .conclusion{background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);color:#fff;padding:28px;border-radius:14px;text-align:center;margin-top:26px}
+    .conclusion h2{font-size:22px;margin-bottom:10px}
+    .conclusion p{opacity:.95;line-height:1.6}
+
+    .save-notice{background:#d1ecf1;border:1px solid #bee5eb;color:#0c5460;padding:12px;border-radius:10px;margin-top:18px;font-size:14px;text-align:center}
+
+    @media (max-width:900px){
+      .digit-grid{grid-template-columns:repeat(2,1fr)}
+      .row{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+      .route{grid-template-columns:1fr}
+      .date-grid{grid-template-columns:1fr}
+      .score{grid-template-columns:1fr}
+    }
+    @media print{body{background:#fff;padding:0}.container{box-shadow:none;max-width:100%}.save-notice{display:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="module">MÓDULO 2 - S.A.L.T.O. EN ACCIÓN</div>
+      <h1>🧠 MEMORIA DE ACERO</h1>
+      <p>MÓDULO 2 - DÍA 11: EJERCICIO - NÚMEROS (PARTE 1): TELÉFONOS Y FECHAS</p>
+    </div>
+
+    <div class="content">
+      <div class="instruction">
+        <h2>📞 Teléfonos y fechas sin esfuerzo</h2>
+        <p>Tu cerebro odia los números aleatorios… <strong>hasta que los conviertes en imágenes</strong>. Hoy aplicarás el <strong>Sistema Numérico S.A.L.T.O.</strong> para memorizar <strong>3 teléfonos</strong> y <strong>5 fechas</strong>.</p>
+        <p><strong>Tiempo estimado:</strong> 10 minutos + <strong>test después de 1 hora</strong>.</p>
+      </div>
+
+      <div class="challenge">
+        <h3>🏆 Reto del Día 11</h3>
+        <p>Memoriza 3 teléfonos + 5 fechas usando: <strong>Segmentar → Convertir a imágenes → Historia absurda → Localizar</strong></p>
+      </div>
+
+      <!-- PASO 0: TU TABLA 0-9 -->
+      <div class="section">
+        <div class="section-title"><span class="step-icon">🧩</span>PASO 0: TU SISTEMA (0–9 = imagen)</div>
+
+        <div class="digits-wrap">
+          <div class="digits-head">
+            <h4>Escribe tu imagen fija para cada dígito</h4>
+            <div class="mini">Puedes mantener las sugeridas o personalizarlas. Lo importante: que sea <strong>visual</strong>, <strong>memorable</strong> y <strong>siempre la misma</strong>.</div>
+          </div>
+
+          <div class="digit-grid">
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">0</div><div class="suggest">Sugerencia: Dona</div></div><input id="d0" placeholder="Tu imagen para 0 (ej. dona)" /></div>
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">1</div><div class="suggest">Sugerencia: Vela</div></div><input id="d1" placeholder="Tu imagen para 1" /></div>
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">2</div><div class="suggest">Sugerencia: Pato</div></div><input id="d2" placeholder="Tu imagen para 2" /></div>
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">3</div><div class="suggest">Sugerencia: Montaña</div></div><input id="d3" placeholder="Tu imagen para 3" /></div>
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">4</div><div class="suggest">Sugerencia: Silla</div></div><input id="d4" placeholder="Tu imagen para 4" /></div>
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">5</div><div class="suggest">Sugerencia: Mano</div></div><input id="d5" placeholder="Tu imagen para 5" /></div>
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">6</div><div class="suggest">Sugerencia: Elefante</div></div><input id="d6" placeholder="Tu imagen para 6" /></div>
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">7</div><div class="suggest">Sugerencia: Guadaña</div></div><input id="d7" placeholder="Tu imagen para 7" /></div>
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">8</div><div class="suggest">Sugerencia: Muñeco</div></div><input id="d8" placeholder="Tu imagen para 8" /></div>
+            <div class="digit-card"><div class="digit-top"><div class="digit-num">9</div><div class="suggest">Sugerencia: Globo</div></div><input id="d9" placeholder="Tu imagen para 9" /></div>
+          </div>
+
+          <div class="tip">Regla de oro: <strong>no cambies tus imágenes</strong>. Una vez eliges tus 10, se vuelven tu “alfabeto numérico”.</div>
+        </div>
+      </div>
+
+      <!-- TELÉFONOS -->
+      <div class="section">
+        <div class="section-title"><span class="step-icon">📞</span>PARTE 1: 3 TELÉFONOS</div>
+        <p style="color:#546e7a;margin-bottom:10px;line-height:1.6">Para cada teléfono: <strong>(1) Segmenta</strong> en 3 bloques, <strong>(2) convierte</strong> cada bloque a imágenes, <strong>(3) crea una historia absurda por bloque</strong>, <strong>(4) localiza</strong> en tu ruta (3 lugares).</p>
+
+        <div class="task">
+          <h4>📞 Teléfono 1</h4>
+          <span class="pill">Número: 614-209-7831</span>
+
+          <div class="row">
+            <div>
+              <label class="label">✂️ Segmentación (3 bloques)</label>
+              <div class="split">
+                <div class="box"><input id="t1b1" value="614" /></div>
+                <div class="box"><input id="t1b2" value="209" /></div>
+                <div class="box"><input id="t1b3" value="7831" /></div>
+              </div>
+
+              <label class="label">🖼️ Imágenes por bloque (escribe: 6=...,1=...,4=...)</label>
+              <textarea id="t1imgs" placeholder="Bloque 614 → [6],[1],[4] | Bloque 209 → [2],[0],[9] | Bloque 7831 → [7],[8],[3],[1]"></textarea>
+
+              <label class="label">🎬 Historias absurdas (una por bloque)</label>
+              <textarea id="t1hist" style="min-height:110px" placeholder="Historia 1 (614): ...
+Historia 2 (209): ...
+Historia 3 (7831): ..."></textarea>
+            </div>
+
+            <div>
+              <label class="label">📍 Localiza en tu ruta (3 lugares)</label>
+              <div class="route">
+                <div class="loc"><strong>Lugar 1</strong><br><input id="t1loc1" placeholder="Ej. Puerta" style="width:100%;padding:10px;margin-top:8px;border:2px solid #eceff1;border-radius:10px"></div>
+                <div class="loc"><strong>Lugar 2</strong><br><input id="t1loc2" placeholder="Ej. Sofá" style="width:100%;padding:10px;margin-top:8px;border:2px solid #eceff1;border-radius:10px"></div>
+                <div class="loc"><strong>Lugar 3</strong><br><input id="t1loc3" placeholder="Ej. Mesa" style="width:100%;padding:10px;margin-top:8px;border:2px solid #eceff1;border-radius:10px"></div>
+              </div>
+              <div class="tip">Camina mentalmente por tu ruta: Lugar1→Bloque1, Lugar2→Bloque2, Lugar3→Bloque3.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task">
+          <h4>📞 Teléfono 2</h4>
+          <span class="pill">Número: 372-845-1609</span>
+
+          <label class="label">🖼️ Imágenes por bloques</label>
+          <textarea id="t2imgs" placeholder="372 → [3][7][2] | 845 → [8][4][5] | 1609 → [1][6][0][9]"></textarea>
+
+          <label class="label">🎬 Historias absurdas (3 historias)</label>
+          <textarea id="t2hist" style="min-height:110px" placeholder="Historia 1 (372): ...
+Historia 2 (845): ...
+Historia 3 (1609): ..."></textarea>
+
+          <label class="label">📍 Localización (3 lugares)</label>
+          <textarea id="t2loc" placeholder="Lugar 1: ... (Historia 1)
+Lugar 2: ... (Historia 2)
+Lugar 3: ... (Historia 3)"></textarea>
+        </div>
+
+        <div class="task">
+          <h4>📞 Teléfono 3</h4>
+          <span class="pill">Número: 905-771-2384</span>
+
+          <label class="label">🖼️ Imágenes por bloques</label>
+          <textarea id="t3imgs" placeholder="905 → [9][0][5] | 771 → [7][7][1] | 2384 → [2][3][8][4]"></textarea>
+
+          <label class="label">🎬 Historias absurdas (3 historias)</label>
+          <textarea id="t3hist" style="min-height:110px" placeholder="Historia 1 (905): ...
+Historia 2 (771): ...
+Historia 3 (2384): ..."></textarea>
+
+          <label class="label">📍 Localización (3 lugares)</label>
+          <textarea id="t3loc" placeholder="Lugar 1: ... (Historia 1)
+Lugar 2: ... (Historia 2)
+Lugar 3: ... (Historia 3)"></textarea>
+        </div>
+      </div>
+
+      <!-- FECHAS -->
+      <div class="section">
+        <div class="section-title"><span class="step-icon">📅</span>PARTE 2: 5 FECHAS</div>
+        <p style="color:#546e7a;margin-bottom:10px;line-height:1.6">Para fechas: segmenta en <strong>Día / Mes / Año</strong>. Convierte a imágenes y crea <strong>una historia</strong>. Localízala en un lugar fijo (por ejemplo: puerta, cocina, escritorio…).</p>
+
+        <div class="date-grid">
+          <div class="task">
+            <h4>📅 Fecha 1</h4>
+            <span class="pill">Fecha: 21-04-2007</span>
+            <label class="label">🖼️ Imágenes (día/mes/año)</label>
+            <textarea id="f1imgs" placeholder="21 → [2][1] | 04 → [0][4] | 2007 → [2][0][0][7]"></textarea>
+            <label class="label">🎬 Historia absurda (una sola)</label>
+            <textarea id="f1hist" placeholder="Escribe una historia que incluya las imágenes del día, mes y año..." ></textarea>
+            <label class="label">📍 ¿Dónde la localizas?</label>
+            <textarea id="f1loc" placeholder="Lugar fijo: ... (puerta/cama/escritorio/etc.)"></textarea>
+          </div>
+
+          <div class="task">
+            <h4>📅 Fecha 2</h4>
+            <span class="pill">Fecha: 03-11-1998</span>
+            <label class="label">🖼️ Imágenes (día/mes/año)</label>
+            <textarea id="f2imgs" placeholder="03 → [0][3] | 11 → [1][1] | 1998 → [1][9][9][8]"></textarea>
+            <label class="label">🎬 Historia absurda</label>
+            <textarea id="f2hist" placeholder="Escribe una historia..." ></textarea>
+            <label class="label">📍 Localización</label>
+            <textarea id="f2loc" placeholder="Lugar fijo: ..."></textarea>
+          </div>
+
+          <div class="task">
+            <h4>📅 Fecha 3</h4>
+            <span class="pill">Fecha: 14-02-2016</span>
+            <label class="label">🖼️ Imágenes (día/mes/año)</label>
+            <textarea id="f3imgs" placeholder="14 → [1][4] | 02 → [0][2] | 2016 → [2][0][1][6]"></textarea>
+            <label class="label">🎬 Historia absurda</label>
+            <textarea id="f3hist" placeholder="Escribe una historia..." ></textarea>
+            <label class="label">📍 Localización</label>
+            <textarea id="f3loc" placeholder="Lugar fijo: ..."></textarea>
+          </div>
+
+          <div class="task">
+            <h4>📅 Fecha 4</h4>
+            <span class="pill">Fecha: 30-09-2022</span>
+            <label class="label">🖼️ Imágenes (día/mes/año)</label>
+            <textarea id="f4imgs" placeholder="30 → [3][0] | 09 → [0][9] | 2022 → [2][0][2][2]"></textarea>
+            <label class="label">🎬 Historia absurda</label>
+            <textarea id="f4hist" placeholder="Escribe una historia..." ></textarea>
+            <label class="label">📍 Localización</label>
+            <textarea id="f4loc" placeholder="Lugar fijo: ..."></textarea>
+          </div>
+
+          <div class="task">
+            <h4>📅 Fecha 5</h4>
+            <span class="pill">Fecha: 09-06-1984</span>
+            <label class="label">🖼️ Imágenes (día/mes/año)</label>
+            <textarea id="f5imgs" placeholder="09 → [0][9] | 06 → [0][6] | 1984 → [1][9][8][4]"></textarea>
+            <label class="label">🎬 Historia absurda</label>
+            <textarea id="f5hist" placeholder="Escribe una historia..." ></textarea>
+            <label class="label">📍 Localización</label>
+            <textarea id="f5loc" placeholder="Lugar fijo: ..."></textarea>
+          </div>
+        </div>
+
+        <div class="tip">Si quieres, puedes sustituir las fechas por <strong>fechas reales</strong> (cumpleaños, aniversarios). Mantén el mismo formato día-mes-año.</div>
+      </div>
+
+      <!-- TEST 1 HORA -->
+      <div class="section">
+        <div class="section-title"><span class="step-icon">✅</span>TEST DESPUÉS DE 1 HORA</div>
+        <div class="test">
+          <h3>¿Qué recuerdas sin mirar?</h3>
+          <p>Cierra este ejercicio. Pon una alarma para <strong>1 hora</strong>. Luego vuelve y escribe los <strong>3 teléfonos</strong> y las <strong>5 fechas</strong> completas.</p>
+
+          <div class="score">
+            <div class="card">
+              <strong>📞 Teléfonos</strong>
+              <input id="test_tel" placeholder="Escribe aquí los 3 teléfonos que recuerdas..." />
+            </div>
+            <div class="card">
+              <strong>📅 Fechas</strong>
+              <input id="test_fech" placeholder="Escribe aquí las 5 fechas que recuerdas..." />
+            </div>
+          </div>
+
+          <div class="tip" style="margin-top:14px">
+            🎯 Objetivo: recordar <strong>3/3 teléfonos</strong> y <strong>5/5 fechas</strong>. Si fallas, fortalece las historias (más absurdas) y la localización (lugares más concretos).
+          </div>
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <h2>🎉 ¡Listo!</h2>
+        <p>Hoy transformaste números abstractos en <strong>imágenes</strong>, los convertiste en <strong>historias</strong> y los fijaste con <strong>localización</strong>.</p>
+        <p><strong>Mañana:</strong> Día 12 - Números (Parte 2) → contraseñas y códigos más complejos.</p>
+      </div>
+
+      <div class="save-notice">💾 Tus respuestas se guardan automáticamente en tu navegador</div>
+    </div>
+  </div>
+
+  <script>
+    // Auto-save in localStorage
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(el => {
+      const key = 'm2d11_' + el.id;
+      const saved = localStorage.getItem(key);
+      if (saved !== null) el.value = saved;
+      el.addEventListener('input', () => localStorage.setItem(key, el.value));
+    });
+
+    window.addEventListener('beforeunload', function(e) {
+      const hasContent = Array.from(inputs).some(i => (i.value || '').trim() !== '');
+      if (hasContent) { e.preventDefault(); e.returnValue = ''; }
+    });
+  </script>
+</body>
+</html>

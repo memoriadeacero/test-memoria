@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MÓDULO 2 - DÍA 13: Listas y tareas - Organiza tu día mentalmente</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#0b486b 0%,#f56217 100%);padding:20px;min-height:100vh}
+    .container{max-width:1000px;margin:0 auto;background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
+    .header{background:linear-gradient(135deg,#0b486b 0%,#0b486b 55%,#f56217 100%);color:#fff;padding:40px;text-align:center}
+    .header .module{font-size:14px;opacity:.9;margin-bottom:10px;letter-spacing:1px}
+    .header h1{font-size:32px;margin-bottom:6px;text-shadow:2px 2px 4px rgba(0,0,0,.25)}
+    .header p{font-size:18px;opacity:.95}
+    .content{padding:40px}
+
+    .instruction{background:#e3f2fd;border-left:5px solid #1565c0;padding:20px;margin-bottom:22px;border-radius:10px}
+    .instruction h2{color:#1565c0;font-size:20px;margin-bottom:10px}
+    .instruction p{color:#333;line-height:1.6;font-size:16px;margin-bottom:10px}
+
+    .challenge{background:linear-gradient(135deg,#ffd700 0%,#ffed4e 100%);border:3px solid #ffc107;border-radius:14px;padding:18px;margin:10px 0 22px;text-align:center}
+    .challenge h3{font-size:22px;margin-bottom:6px;color:#333}
+    .challenge p{color:#333;font-weight:700;line-height:1.5}
+
+    .section{margin:26px 0}
+    .section-title{background:linear-gradient(135deg,#0b486b 0%,#1c7aa6 60%,#0b486b 100%);color:#fff;padding:14px 18px;border-radius:12px;font-size:18px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
+    .step-icon{font-size:22px}
+
+    .tip{background:#e8f5e9;border-left:4px solid #4caf50;padding:12px 14px;border-radius:8px;color:#2e7d32;font-size:14px;line-height:1.5;margin:12px 0}
+    .warn{background:#fff3e0;border-left:4px solid #ff9800;padding:12px 14px;border-radius:8px;color:#6d4c41;font-size:14px;line-height:1.5;margin:12px 0}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .card{background:#f7fbff;border:2px solid #bbdefb;border-radius:14px;padding:16px}
+    .card h4{color:#0d47a1;margin-bottom:8px;font-size:15px}
+    .card p{color:#455a64;line-height:1.5;font-size:13px}
+
+    .label{display:block;color:#37474f;font-weight:800;margin:10px 0 6px;font-size:13px}
+    textarea, input{width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px}
+    textarea{min-height:90px;resize:vertical}
+    textarea:focus, input:focus{outline:none;border-color:#0b486b;box-shadow:0 0 0 3px rgba(11,72,107,.12)}
+
+    .tasks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .taskbox{background:#fff;border:2px solid #cfd8dc;border-radius:14px;padding:12px}
+    .taskbox .n{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#f56217,#ff8c3a);color:#fff;font-weight:900;margin-bottom:8px}
+
+    .segment-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .seg{background:#fff;border:2px solid #bbdefb;border-radius:14px;padding:12px}
+    .seg h5{color:#0d47a1;margin-bottom:8px}
+
+    .route-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .loc{background:#f5f5f5;border:2px solid #0b486b;border-radius:14px;padding:12px}
+    .loc .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+    .loc .badge{width:34px;height:34px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0b486b,#1c7aa6);color:#fff;font-weight:900}
+    .loc small{color:#546e7a}
+
+    .review{background:#fff9c4;border:3px solid #fbc02d;border-radius:14px;padding:20px}
+    .review h3{color:#f57f17;text-align:center;margin-bottom:10px}
+    .review p{color:#555;text-align:center;line-height:1.6;margin-bottom:12px}
+
+    .score{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    .score .card2{background:#fff;border:2px solid #fbc02d;border-radius:12px;padding:14px}
+
+    .conclusion{background:linear-gradient(135deg,#0b486b 0%,#0b486b 55%,#f56217 100%);color:#fff;padding:28px;border-radius:14px;text-align:center;margin-top:22px}
+    .conclusion h2{font-size:22px;margin-bottom:10px}
+    .conclusion p{opacity:.95;line-height:1.6}
+
+    .save-notice{background:#d1ecf1;border:1px solid #bee5eb;color:#0c5460;padding:12px;border-radius:10px;margin-top:18px;font-size:14px;text-align:center}
+
+    @media (max-width:900px){
+      .grid2{grid-template-columns:1fr}
+      .tasks-grid{grid-template-columns:1fr}
+      .segment-grid{grid-template-columns:1fr}
+      .route-grid{grid-template-columns:1fr}
+      .score{grid-template-columns:1fr}
+    }
+    @media print{body{background:#fff;padding:0}.container{box-shadow:none;max-width:100%}.save-notice{display:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="module">MÓDULO 2 - S.A.L.T.O. EN ACCIÓN</div>
+      <h1>🧠 MEMORIA DE ACERO</h1>
+      <p>MÓDULO 2 - DÍA 13: EJERCICIO - LISTAS Y TAREAS (TU DÍA MENTAL)</p>
+    </div>
+
+    <div class="content">
+      <div class="instruction">
+        <h2>🗓️ Organiza tu día sin escribir nada</h2>
+        <p>Hoy vas a memorizar tu agenda del día usando tu <strong>Ruta Diaria Sagrada</strong>. Sin listas, sin apps, sin post-its.</p>
+        <p><strong>Tiempo estimado:</strong> 15 minutos. <strong>Objetivo:</strong> recordar y ejecutar 10 tareas mañana.</p>
+      </div>
+
+      <div class="challenge">
+        <h3>🏆 Reto del Día 13</h3>
+        <p><strong>Organiza tu día de mañana</strong> con S.A.L.T.O.: Segmenta → Asocia (imágenes absurdas) → Localiza → Observa (3 repasos).</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">🧩</span>SISTEMA DE LISTAS S.A.L.T.O.</div>
+        <div class="grid2">
+          <div class="card">
+            <h4>S - SEGMENTAR</h4>
+            <p>Agrupa por contexto: llamadas, compras, casa, trabajo, admin. Menos carga mental.</p>
+          </div>
+          <div class="card">
+            <h4>A + L - ASOCIAR + LOCALIZAR</h4>
+            <p>Crea una imagen absurda por tarea y colócala en un lugar fijo de tu ruta (siempre el mismo orden).</p>
+          </div>
+          <div class="card">
+            <h4>T - TRANSFORMAR (opcional)</h4>
+            <p>Si una tarea es crítica, añade un micro-gesto (1–2 s) para reforzarla.</p>
+          </div>
+          <div class="card">
+            <h4>O - OBSERVAR</h4>
+            <p>Repasa tu ruta 3 veces: mañana, mediodía y noche. Total 4 minutos.</p>
+          </div>
+        </div>
+        <div class="tip">Tip: si tu ruta tiene 10 lugares, puedes memorizar 10 tareas. Si necesitas más, usa otra ruta (trabajo, coche, etc.).</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">📝</span>PASO 1: ESCRIBE TUS 10 TAREAS (para mañana)</div>
+        <p style="color:#546e7a;line-height:1.6;margin-bottom:10px">Escribe 10 tareas reales (mañana). Si quieres, usa las del ejemplo del guion, o crea tus propias tareas.</p>
+
+        <div class="tasks-grid">
+          <div class="taskbox"><div class="n">1</div><input id="t1" placeholder="Tarea 1 (ej. llamar al dentista)" /></div>
+          <div class="taskbox"><div class="n">2</div><input id="t2" placeholder="Tarea 2 (ej. comprar leche)" /></div>
+          <div class="taskbox"><div class="n">3</div><input id="t3" placeholder="Tarea 3 (ej. enviar email a Juan)" /></div>
+          <div class="taskbox"><div class="n">4</div><input id="t4" placeholder="Tarea 4 (ej. pagar recibo)" /></div>
+          <div class="taskbox"><div class="n">5</div><input id="t5" placeholder="Tarea 5" /></div>
+          <div class="taskbox"><div class="n">6</div><input id="t6" placeholder="Tarea 6" /></div>
+          <div class="taskbox"><div class="n">7</div><input id="t7" placeholder="Tarea 7" /></div>
+          <div class="taskbox"><div class="n">8</div><input id="t8" placeholder="Tarea 8" /></div>
+          <div class="taskbox"><div class="n">9</div><input id="t9" placeholder="Tarea 9" /></div>
+          <div class="taskbox"><div class="n">10</div><input id="t10" placeholder="Tarea 10" /></div>
+        </div>
+
+        <div class="warn">No hace falta que sean “tareas grandes”. Mejor 10 tareas reales y concretas (5–20 minutos cada una).</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">✂️</span>PASO 2: SEGMENTAR (agrupa por contexto)</div>
+        <p style="color:#546e7a;line-height:1.6;margin-bottom:10px">Agrupa tus tareas por contexto. Puedes usar estos 5 grupos o cambiarlos.</p>
+
+        <div class="segment-grid">
+          <div class="seg"><h5>📞 Llamadas</h5><textarea id="g_calls" placeholder="Ej: 1, 8 (o escribe las tareas)" class="small"></textarea></div>
+          <div class="seg"><h5>🛒 Compras</h5><textarea id="g_shop" placeholder="Ej: 2" class="small"></textarea></div>
+          <div class="seg"><h5>🏠 Casa</h5><textarea id="g_home" placeholder="Ej: 5, 9" class="small"></textarea></div>
+          <div class="seg"><h5>💼 Trabajo</h5><textarea id="g_work" placeholder="Ej: 3, 7, 10" class="small"></textarea></div>
+          <div class="seg"><h5>🧾 Admin</h5><textarea id="g_admin" placeholder="Ej: 4, 6" class="small"></textarea></div>
+        </div>
+
+        <div class="tip">No busques perfección: lo importante es pasar de 10 sueltas a 4–6 grupos manejables.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">🎨</span>PASO 3: ASOCIAR (1 imagen absurda por tarea)</div>
+        <p style="color:#546e7a;line-height:1.6;margin-bottom:10px">Para cada tarea, escribe una imagen absurda (tamaño exagerado, acción imposible, cosas incompatibles).</p>
+
+        <div class="tasks-grid">
+          <div class="taskbox"><div class="n">1</div><textarea id="a1" placeholder="Imagen absurda para la tarea 1..."></textarea></div>
+          <div class="taskbox"><div class="n">2</div><textarea id="a2" placeholder="Imagen absurda para la tarea 2..."></textarea></div>
+          <div class="taskbox"><div class="n">3</div><textarea id="a3" placeholder="Imagen absurda para la tarea 3..."></textarea></div>
+          <div class="taskbox"><div class="n">4</div><textarea id="a4" placeholder="Imagen absurda para la tarea 4..."></textarea></div>
+          <div class="taskbox"><div class="n">5</div><textarea id="a5" placeholder="Imagen absurda para la tarea 5..."></textarea></div>
+          <div class="taskbox"><div class="n">6</div><textarea id="a6" placeholder="Imagen absurda para la tarea 6..."></textarea></div>
+          <div class="taskbox"><div class="n">7</div><textarea id="a7" placeholder="Imagen absurda para la tarea 7..."></textarea></div>
+          <div class="taskbox"><div class="n">8</div><textarea id="a8" placeholder="Imagen absurda para la tarea 8..."></textarea></div>
+          <div class="taskbox"><div class="n">9</div><textarea id="a9" placeholder="Imagen absurda para la tarea 9..."></textarea></div>
+          <div class="taskbox"><div class="n">10</div><textarea id="a10" placeholder="Imagen absurda para la tarea 10..."></textarea></div>
+        </div>
+
+        <div class="tip">Si una imagen es “normal”, no se queda. Hazla ridícula y exagerada.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">📍</span>PASO 4: LOCALIZAR (coloca las 10 imágenes en tu ruta)</div>
+        <p style="color:#546e7a;line-height:1.6;margin-bottom:10px">Define 10 lugares en orden fijo (pueden ser los del ejemplo o los tuyos). En cada lugar, coloca la imagen de la tarea correspondiente.</p>
+
+        <div class="route-grid">
+          <div class="loc"><div class="top"><div class="badge">1</div><div><strong>Lugar 1</strong><br><small>(ej. puerta)</small></div></div><input id="l1" placeholder="Nombre del lugar" /><textarea id="l1img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+          <div class="loc"><div class="top"><div class="badge">2</div><div><strong>Lugar 2</strong><br><small>(ej. perchero)</small></div></div><input id="l2" placeholder="Nombre del lugar" /><textarea id="l2img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+          <div class="loc"><div class="top"><div class="badge">3</div><div><strong>Lugar 3</strong><br><small>(ej. sofá)</small></div></div><input id="l3" placeholder="Nombre del lugar" /><textarea id="l3img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+          <div class="loc"><div class="top"><div class="badge">4</div><div><strong>Lugar 4</strong><br><small>(ej. mesa)</small></div></div><input id="l4" placeholder="Nombre del lugar" /><textarea id="l4img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+          <div class="loc"><div class="top"><div class="badge">5</div><div><strong>Lugar 5</strong><br><small>(ej. refrigerador)</small></div></div><input id="l5" placeholder="Nombre del lugar" /><textarea id="l5img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+          <div class="loc"><div class="top"><div class="badge">6</div><div><strong>Lugar 6</strong><br><small>(ej. estufa)</small></div></div><input id="l6" placeholder="Nombre del lugar" /><textarea id="l6img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+          <div class="loc"><div class="top"><div class="badge">7</div><div><strong>Lugar 7</strong><br><small>(ej. cama)</small></div></div><input id="l7" placeholder="Nombre del lugar" /><textarea id="l7img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+          <div class="loc"><div class="top"><div class="badge">8</div><div><strong>Lugar 8</strong><br><small>(ej. escritorio)</small></div></div><input id="l8" placeholder="Nombre del lugar" /><textarea id="l8img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+          <div class="loc"><div class="top"><div class="badge">9</div><div><strong>Lugar 9</strong><br><small>(ej. baño)</small></div></div><input id="l9" placeholder="Nombre del lugar" /><textarea id="l9img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+          <div class="loc"><div class="top"><div class="badge">10</div><div><strong>Lugar 10</strong><br><small>(ej. ventana)</small></div></div><input id="l10" placeholder="Nombre del lugar" /><textarea id="l10img" placeholder="¿Qué imagen/tarea está aquí?"></textarea></div>
+        </div>
+
+        <div class="tip">Cuando necesites tu agenda, camina mentalmente por la ruta (1→10) y verás las tareas en orden.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">👁️</span>PASO 5: OBSERVAR (3 repasos mañana)</div>
+        <div class="review">
+          <h3>Plan de repaso (4 minutos en total)</h3>
+          <p>Escribe cuándo harás tus 3 repasos. No uses fechas del curso: usa momentos del día.</p>
+
+          <label class="label">⏰ Repaso 1 (mañana, antes de salir)</label>
+          <input id="r1" placeholder="Ej: 7:30 mientras desayuno" />
+
+          <label class="label">🍽️ Repaso 2 (mediodía, antes de comer)</label>
+          <input id="r2" placeholder="Ej: 13:45 antes de comer" />
+
+          <label class="label">🌙 Repaso 3 (noche, antes de dormir)</label>
+          <input id="r3" placeholder="Ej: 22:30 antes de dormir" />
+
+          <div class="tip">En el repaso del mediodía: "borra" mentalmente las tareas ya hechas (imagina que explotan/desaparecen).</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">✅</span>RESULTADO (al final del día)</div>
+        <div class="review">
+          <h3>¿Cuántas recordaste?</h3>
+          <p>Al terminar el día, completa tu evaluación.</p>
+
+          <div class="score">
+            <div class="card2">
+              <strong>📊 Puntaje</strong>
+              <input id="score" placeholder="Ej: 8/10" />
+              <div class="tip" style="margin-top:10px">
+                • 8–10: ¡Excelente!<br>
+                • 5–7: Bien (repasa más veces)<br>
+                • &lt;5: Haz las imágenes más vívidas
+              </div>
+            </div>
+            <div class="card2">
+              <strong>🧠 Lección del día</strong>
+              <textarea id="lesson" placeholder="¿Qué funcionó? ¿Qué ajustarás mañana?" style="min-height:120px"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <h2>🎉 ¡Listo!</h2>
+        <p>Hoy convertiste tu agenda en un recorrido mental: <strong>Segmentar → Imagen → Ruta → Repaso</strong>.</p>
+        <p><strong>Mañana:</strong> Día 14 - Repaso Semana 2 + Mini Test.</p>
+      </div>
+
+      <div class="save-notice">💾 Tus respuestas se guardan automáticamente en tu navegador</div>
+    </div>
+  </div>
+
+  <script>
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(el => {
+      const key = 'm2d13_' + el.id;
+      const saved = localStorage.getItem(key);
+      if (saved !== null) el.value = saved;
+      el.addEventListener('input', () => localStorage.setItem(key, el.value));
+    });
+
+    window.addEventListener('beforeunload', function(e) {
+      const hasContent = Array.from(inputs).some(i => (i.value || '').trim() !== '');
+      if (hasContent) { e.preventDefault(); e.returnValue = ''; }
+    });
+  </script>
+</body>
+</html>

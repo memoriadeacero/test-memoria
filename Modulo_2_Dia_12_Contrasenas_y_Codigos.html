@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MÓDULO 2 - DÍA 12: Contraseñas seguras que nunca olvidas</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#141e30 0%,#243b55 100%);padding:20px;min-height:100vh}
+    .container{max-width:980px;margin:0 auto;background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
+    .header{background:linear-gradient(135deg,#141e30 0%,#243b55 100%);color:#fff;padding:40px;text-align:center}
+    .header .module{font-size:14px;opacity:.9;margin-bottom:10px;letter-spacing:1px}
+    .header h1{font-size:32px;margin-bottom:6px;text-shadow:2px 2px 4px rgba(0,0,0,.25)}
+    .header p{font-size:18px;opacity:.95}
+    .content{padding:40px}
+
+    .instruction{background:#e3f2fd;border-left:5px solid #1565c0;padding:20px;margin-bottom:22px;border-radius:10px}
+    .instruction h2{color:#1565c0;font-size:20px;margin-bottom:10px}
+    .instruction p{color:#333;line-height:1.6;font-size:16px;margin-bottom:10px}
+
+    .warning{background:#fff3e0;border:2px solid #ff9800;border-radius:12px;padding:16px;margin-bottom:22px}
+    .warning h3{color:#e65100;font-size:16px;margin-bottom:8px}
+    .warning p{color:#4e342e;line-height:1.6;font-size:14px}
+
+    .section{margin:26px 0}
+    .section-title{background:linear-gradient(135deg,#141e30 0%,#243b55 100%);color:#fff;padding:14px 18px;border-radius:12px;font-size:18px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
+    .step-icon{font-size:22px}
+
+    .tip{background:#e8f5e9;border-left:4px solid #4caf50;padding:12px 14px;border-radius:8px;color:#2e7d32;font-size:14px;line-height:1.5;margin:12px 0}
+
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .card{background:#f7fbff;border:2px solid #bbdefb;border-radius:14px;padding:16px}
+    .card h4{color:#0d47a1;margin-bottom:8px;font-size:15px}
+    .card p{color:#455a64;line-height:1.5;font-size:13px}
+
+    .rules{background:#f5f5f5;border:2px solid #90a4ae;border-radius:14px;padding:18px}
+    .rules h4{color:#263238;margin-bottom:10px}
+    .rules-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .rules-box{background:#fff;border:2px solid #cfd8dc;border-radius:12px;padding:12px}
+    .rules-box label{display:block;font-weight:800;color:#37474f;margin-bottom:6px;font-size:13px}
+    .rules-box input{width:100%;padding:10px;border:2px solid #eceff1;border-radius:10px}
+    .rules-box input:focus{outline:none;border-color:#243b55;box-shadow:0 0 0 3px rgba(36,59,85,.12)}
+
+    .pw-section{background:#f5f5f5;border:2px solid #243b55;border-radius:16px;padding:18px;margin-bottom:16px}
+    .pw-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+    .pw-head h3{color:#141e30}
+    .pill{display:inline-block;background:#fff;border:2px solid #bbdefb;color:#0d47a1;padding:6px 10px;border-radius:999px;font-weight:900;font-size:12px}
+
+    .label{display:block;color:#37474f;font-weight:800;margin:10px 0 6px;font-size:13px}
+    textarea{width:100%;min-height:90px;padding:12px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px;resize:vertical}
+    textarea:focus{outline:none;border-color:#243b55;box-shadow:0 0 0 3px rgba(36,59,85,.12)}
+
+    .small{min-height:70px}
+
+    .test{background:#fff9c4;border:3px solid #fbc02d;border-radius:14px;padding:20px}
+    .test h3{color:#f57f17;text-align:center;margin-bottom:10px}
+    .test p{color:#555;text-align:center;line-height:1.6;margin-bottom:12px}
+
+    .conclusion{background:linear-gradient(135deg,#141e30 0%,#243b55 100%);color:#fff;padding:28px;border-radius:14px;text-align:center;margin-top:22px}
+    .conclusion h2{font-size:22px;margin-bottom:10px}
+    .conclusion p{opacity:.95;line-height:1.6}
+
+    .save-notice{background:#d1ecf1;border:1px solid #bee5eb;color:#0c5460;padding:12px;border-radius:10px;margin-top:18px;font-size:14px;text-align:center}
+
+    @media (max-width:900px){
+      .grid3{grid-template-columns:1fr}
+      .rules-grid{grid-template-columns:1fr}
+    }
+    @media print{body{background:#fff;padding:0}.container{box-shadow:none;max-width:100%}.save-notice{display:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="module">MÓDULO 2 - S.A.L.T.O. EN ACCIÓN</div>
+      <h1>🧠 MEMORIA DE ACERO</h1>
+      <p>MÓDULO 2 - DÍA 12: EJERCICIO - CONTRASEÑAS Y CÓDIGOS</p>
+    </div>
+
+    <div class="content">
+      <div class="instruction">
+        <h2>🔐 Contraseñas seguras que nunca olvidas</h2>
+        <p>Hoy vas a crear <strong>3 contraseñas seguras</strong> usando un sistema simple: <strong>Frase personal → Reglas de transformación → Visualización</strong>.</p>
+        <p><strong>Tiempo estimado:</strong> 10 minutos.</p>
+      </div>
+
+      <div class="warning">
+        <h3>🛡️ IMPORTANTE (seguridad)</h3>
+        <p><strong>No escribas aquí tus contraseñas finales</strong>. Este ejercicio es para guardar <strong>tus frases</strong>, <strong>tus reglas</strong> y <strong>tu imagen mental</strong>. Tu cerebro reconstruirá la contraseña cuando la necesites.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">🧠</span>EL SISTEMA (3 pasos)</div>
+        <div class="grid3">
+          <div class="card"><h4>1) FRASE SIGNIFICATIVA</h4><p>Algo personal (recuerdo, frase familiar, película favorita). Cuanto más único, mejor.</p></div>
+          <div class="card"><h4>2) REGLAS DE TRANSFORMACIÓN</h4><p>Primera letra, vocales→números, separadores (_ # $ !), y año corto/largo.</p></div>
+          <div class="card"><h4>3) VISUALIZACIÓN</h4><p>Tu cerebro recuerda la historia. La contraseña es la traducción de esa imagen.</p></div>
+        </div>
+        <div class="tip">Regla clave: elige tus reglas y <strong>no las cambies</strong>. Consistencia = memoria automática.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">⚙️</span>TUS REGLAS (personalízalas)</div>
+        <div class="rules">
+          <h4>Escribe aquí tus reglas fijas</h4>
+          <div class="rules-grid">
+            <div class="rules-box"><label>Vocales → números (ej. a=4, e=3, i=1, o=0)</label><input id="rules_vowels" placeholder="Ej: a=4, e=3, i=1, o=0, u=u" /></div>
+            <div class="rules-box"><label>Consonantes opcionales (ej. s=5, t=7, b=8)</label><input id="rules_cons" placeholder="Ej: s=5, t=7, b=8 (opcional)" /></div>
+            <div class="rules-box"><label>Separador de palabras (espacios → _ o - o .)</label><input id="rules_sep" placeholder="Ej: espacios = _" /></div>
+            <div class="rules-box"><label>Final / símbolo fijo (! # $)</label><input id="rules_end" placeholder="Ej: siempre termino con !" /></div>
+            <div class="rules-box"><label>Año (¿completo 2026 o corto 26?)</label><input id="rules_year" placeholder="Ej: año corto 26" /></div>
+            <div class="rules-box"><label>Regla de mayúsculas</label><input id="rules_caps" placeholder="Ej: primera letra de cada palabra en mayúscula" /></div>
+          </div>
+          <div class="tip">Tip: si usas el año, recuerda que hoy es 2026-01-15. Puedes decidir: 2026 o 26.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="step-icon">🧪</span>CREA 3 CONTRASEÑAS (sin escribir la contraseña final)</div>
+
+        <div class="pw-section">
+          <div class="pw-head">
+            <h3>1) Email personal</h3>
+            <span class="pill">Objetivo: 12+ caracteres, números + símbolo</span>
+          </div>
+          <label class="label">Paso 1 — Tu frase personal (no común, muy tuya)</label>
+          <textarea id="p1_phrase" placeholder="Escribe una frase personal (recuerdo, frase familiar, etc.)"></textarea>
+
+          <label class="label">Paso 2 — Versión corta (solo palabras clave)</label>
+          <textarea id="p1_short" class="small" placeholder="Ej: 'Abuela come fruta' (solo palabras clave)"></textarea>
+
+          <label class="label">Paso 2b — Transformación (explica el proceso, sin poner el resultado final)</label>
+          <textarea id="p1_transform" placeholder="Describe: primeras letras, vocales→números, separadores, año, símbolo... (sin escribir la contraseña final)"></textarea>
+
+          <label class="label">Paso 3 — Visualización (tu imagen mental absurda)</label>
+          <textarea id="p1_visual" placeholder="Describe una imagen mental viva e imposible ligada a tu frase"></textarea>
+        </div>
+
+        <div class="pw-section">
+          <div class="pw-head">
+            <h3>2) Banco / finanzas</h3>
+            <span class="pill">Más segura: 14–18 caracteres (ideal)</span>
+          </div>
+          <label class="label">Paso 1 — Tu frase personal</label>
+          <textarea id="p2_phrase" placeholder="Escribe una frase personal (película favorita, escena, etc.)"></textarea>
+
+          <label class="label">Paso 2 — Versión corta (palabras clave)</label>
+          <textarea id="p2_short" class="small" placeholder="Escribe la versión corta"></textarea>
+
+          <label class="label">Paso 2b — Transformación (sin resultado final)</label>
+          <textarea id="p2_transform" placeholder="Explica el proceso (sin poner la contraseña final)"></textarea>
+
+          <label class="label">Paso 3 — Visualización</label>
+          <textarea id="p2_visual" placeholder="Describe la escena mental que te permitirá reconstruir la contraseña"></textarea>
+        </div>
+
+        <div class="pw-section">
+          <div class="pw-head">
+            <h3>3) Redes sociales</h3>
+            <span class="pill">Equilibrio: segura + rápida de escribir</span>
+          </div>
+          <label class="label">Paso 1 — Tu frase personal</label>
+          <textarea id="p3_phrase" placeholder="Escribe una frase personal (recuerdo de infancia, etc.)"></textarea>
+
+          <label class="label">Paso 2 — Versión corta (palabras clave)</label>
+          <textarea id="p3_short" class="small" placeholder="Escribe la versión corta"></textarea>
+
+          <label class="label">Paso 2b — Transformación (sin resultado final)</label>
+          <textarea id="p3_transform" placeholder="Explica el proceso (sin poner la contraseña final)"></textarea>
+
+          <label class="label">Paso 3 — Visualización</label>
+          <textarea id="p3_visual" placeholder="Describe la imagen mental absurda"></textarea>
+        </div>
+
+        <div class="test">
+          <h3>✅ Mini-test (sin mirar)</h3>
+          <p>Dentro de unas horas o mañana, intenta reconstruir tus 3 contraseñas solo con tu <strong>frase</strong>, tus <strong>reglas</strong> y tu <strong>visualización</strong>.
+          Si fallas, tu visualización no fue lo bastante vívida o tus reglas no son consistentes.</p>
+        </div>
+
+        <div class="tip">Recomendación: usa un gestor de contraseñas si lo deseas. Este ejercicio es para que puedas recordarlas igual, sin post-its ni repetir 50 veces.</div>
+      </div>
+
+      <div class="conclusion">
+        <h2>🎉 ¡Listo!</h2>
+        <p>Hoy aprendiste: <strong>Contraseña segura = Frase personal + Transformación + Visualización</strong>.</p>
+        <p><strong>Mañana:</strong> Día 13 - Listas y tareas (organiza tu día sin escribir).</p>
+      </div>
+
+      <div class="save-notice">💾 Tus respuestas se guardan automáticamente en tu navegador</div>
+    </div>
+  </div>
+
+  <script>
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(el => {
+      const key = 'm2d12_' + el.id;
+      const saved = localStorage.getItem(key);
+      if (saved !== null) el.value = saved;
+      el.addEventListener('input', () => localStorage.setItem(key, el.value));
+    });
+
+    window.addEventListener('beforeunload', function(e) {
+      const hasContent = Array.from(inputs).some(i => (i.value || '').trim() !== '');
+      if (hasContent) { e.preventDefault(); e.returnValue = ''; }
+    });
+  </script>
+</body>
+</html>
